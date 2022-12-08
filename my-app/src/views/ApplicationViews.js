@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { Login } from "../components/auth/Login"
 import { Register } from "../components/auth/Register"
+import { ServiceContainer } from "../components/services/ServiceContainer"
 import { Authorized } from "./Authorized"
 
 
@@ -11,21 +12,16 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/register" element={<Register setToken={setToken} />} />
       <Route element={<Authorized token={token} />}>
 
-        {/* <Route path="/tags" element={<TagContainer />} />
-        <Route path="/tags/:tagId" element={<TagEdit />} />
-        <Route path="/posts" element={<AllPosts />} />
-        <Route path="/" element={< AllPosts token={token} />} />
-        <Route path="/posts/:postId" element={<PostDetails />} />
-        <Route path="/categories" element={<CategoryContainer />} />
-        <Route path="/posts" element={<AllPosts />} />
-        <Route path="/newPosts" element={<AddPost />} />
-        <Route path="/users" element={<UserList />} />
-        <Route path="/myPosts" element={<MyPosts />} />
-        <Route path="/newPosts" element={<AddPost />} />
-        <Route path="/users" element={<UserList />} />
-        <Route path="/myPosts" element={<MyPosts />} />
-        <Route path="/users/:userId" element={<UserDetails />} />
-        <Route path="categories/:categoryId/edit" element={ <UpdateCategory /> } /> */}
+        {/* <Route path="/reactions" element={<ReactionContainer />} /> */}
+        <Route path="/" element={< ServiceContainer token={token} />} />
+        {/* <Route path="/services/:serviceId" element={<ServiceDetails />} />
+        <Route path="/favorites" element={<CategoryContainer />} /> */}
+        <Route path="/services" element={<ServiceContainer />} />
+        {/* <Route path="/newServices" element={<AddService />} />
+        <Route path="/myServices" element={<MyServices />} />
+        <Route path="/newServices" element={<AddService />} /> */}
+        {/* <Route path="/users" element={<UserList />} /> */}
+        {/* <Route path="/users/:userId" element={<UserDetails />} /> */}
       </Route>
       </Routes>
   </>
