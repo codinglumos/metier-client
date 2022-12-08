@@ -1,103 +1,122 @@
-import React, { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
+import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-import "./Login.css"
+import { registerUser } from "../../managers/AuthManager"
 
-export const Register = () => {
-    const [customer, setCustomer] = useState({ "account_type": "customer" })
-    const [serverFeedback, setFeedback] = useState("")
-    const conflictDialog = useRef()
-    const navigate = useNavigate()
+export const Register = ({ setToken }) => {
+  const firstName = useRef()
+  const lastName = useRef()
+  const email = useRef()
+  const username = useRef()
+  const bio = useRef()
+  const password = useRef()
+  const profileImage = useRef()
+  const verifyPassword = useRef()
+  const passwordDialog = useRef()
+  const navigate = useNavigate()
 
-    const handleRegister = (e) => {
-        e.preventDefault()
-        fetch("http://localhost:8000/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(customer)
+  const handleRegister = (e) => {
+    e.preventDefault()
+
+    if (password.current.value === verifyPassword.current.value) {
+      const newUser = {
+        username: username.current.value,
+        first_name: firstName.current.value,
+        last_name: lastName.current.value,
+        email: email.current.value,
+        password: password.current.value,
+        bio: bio.current.value,
+        profile_image: profileImage.current.value
+      }
+
+      registerUser(newUser)
+        .then(res => {
+          if ("token" in res && res.token) {
+            setToken(res.token)
+            //  saved in local storage as auth_token
+            navigate("/")
+          }
         })
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json()
-                }
-                return res.json().then((json) => {
-                    throw new Error(JSON.stringify(json))
-                });
-            })
-            .then(createdUser => {
-                localStorage.setItem("metier", JSON.stringify(createdUser))
-                navigate("/")
-            })
-            .catch(error => {
-                setFeedback(JSON.parse(error.message).message)
-            })
+    } else {
+      passwordDialog.current.showModal()
     }
+  }
 
-    useEffect(() => {
-        if (serverFeedback !== "") {
-            conflictDialog.current.showModal()
-        }
-    }, [serverFeedback])
+  return (
+    <section className="columns is-centered">
+      <form className="column is-two-thirds" onSubmit={handleRegister}>
+        <h1 className="title">Meiter: What's Your Side Hustle?</h1>
+        <p className="subtitle">Create an account</p>
+        <div className="field">
+          <label className="label">First Name</label>
+          <div className="control">
+            <input className="input" type="text" ref={firstName} />
+          </div>
+        </div>
 
-    const updateCustomer = (evt) => {
-        const copy = { ...customer }
-        copy[evt.target.id] = evt.target.value
-        setCustomer(copy)
-    }
+        <div className="field">
+          <label className="label">Last Name</label>
+          <div className="control">
+            <input className="input" type="text" ref={lastName} />
+          </div>
+        </div>
 
+        <div className="field">
+          <label className="label">Username</label>
+          <div className="control">
+            <input className="input" type="text" ref={username} />
+          </div>
+        </div>
 
-    return (
-        <main style={{ textAlign: "center" }}>
-            <dialog className="dialog dialog--password" ref={conflictDialog}>
-                <div>{ serverFeedback }</div>
-                <button className="button--close"
-                    onClick={e => {
-                        conflictDialog.current.close()
-                        setFeedback("")
-                    }}>Close</button>
-            </dialog>
+        <div className="field">
+          <label className="label">Email</label>
+          <div className="control">
+            <input className="input" type="email" ref={email} />
+          </div>
+        </div>
 
-            <form className="form--login" onSubmit={handleRegister}>
-                <h1 className="h3 mb-3 font-weight-normal">Register New Account</h1>
-                <fieldset>
-                    <label htmlFor="first_name"> First Name </label>
-                    <input onChange={updateCustomer}
-                        type="text" id="first_name"
-                        className="form-control" required autoFocus />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="last_name"> Last Name </label>
-                    <input onChange={updateCustomer}
-                        type="text" id="last_name"
-                        className="form-control" required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="address"> Address </label>
-                    <input onChange={updateCustomer}
-                        type="text"
-                        id="address"
-                        className="form-control" required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="email"> Email address </label>
-                    <input onChange={updateCustomer}
-                        type="email"
-                        id="email"
-                        className="form-control" required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="password"> Password </label>
-                    <input onChange={updateCustomer}
-                        type="password"
-                        id="password"
-                        className="form-control" required />
-                </fieldset>
-                <fieldset>
-                    <button type="submit"> Register </button>
-                </fieldset>
-            </form>
-        </main>
-    )
+        <div className="field">
+          <label className="label">Password</label>
+          <div className="field-body">
+            <div className="field">
+              <p className="control is-expanded">
+                <input className="input" type="password" placeholder="Password" ref={password} />
+              </p>
+            </div>
+
+            <div className="field">
+              <p className="control is-expanded">
+                <input className="input" type="password" placeholder="Verify Password" ref={verifyPassword} />
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label">Bio</label>
+          <div className="control">
+            <textarea className="textarea" placeholder="Tell us about yourself..." ref={bio}></textarea>
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label">Profile Image</label>
+          <div className="control">
+            <textarea className="textarea" placeholder="Insert Picture URL" ref={profileImage}></textarea>
+          </div>
+        </div>
+
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-link" type="submit" >
+              Submit</button>
+          </div>
+          <div className="control">
+            <Link to="/login" className="button is-link is-light">Cancel</Link>
+          </div>
+        </div>
+
+      </form>
+    </section>
+  )
 }
-
