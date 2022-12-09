@@ -4,6 +4,7 @@ import { Register } from "../components/auth/Register"
 import { ServiceContainer } from "../components/services/ServiceContainer"
 import { Authorized } from "./Authorized"
 import { CreatorRegister } from "../components/auth/CreatorRegister"
+import { ServiceForm } from "../components/services/ServiceForm"
 
 export const ApplicationViews = () => {
   return <>
@@ -14,6 +15,8 @@ export const ApplicationViews = () => {
       <Route element={<Authorized />}>
         <Route path="/" element={< ServiceContainer  />} />
         <Route path="/services" element={<ServiceContainer />} />
+        <Route path="/createservice" element={<ServiceForm />} />
+
       
       </Route>
       </Routes>

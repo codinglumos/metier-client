@@ -3,9 +3,9 @@ export const getUsers = () => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        }
+            "Authorization": `Token ${localStorage.getItem("metier_token")}`}
     })
-        .then(res => res.json())
+        .then(response => response.json())
 }
 
 export const getUserById = (userId) => {
@@ -13,7 +13,7 @@ export const getUserById = (userId) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        }
+            "Authorization": `Token ${localStorage.getItem("metier_token")}`}
     })
-        .then(res => res.json())
+        .then(response => response.json())
 }

@@ -1,7 +1,9 @@
 export const getReactions = () => {
     return fetch(`http://localhost:8000/reactions`, {
         headers: {
-            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        }
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("metier_token")}`}
     })
         .then(response => response.json())
 }
@@ -9,8 +11,9 @@ export const getReactions = () => {
 export const getReactionById = (id) => {
     return fetch(`http://localhost:8000/reactions/${id}`, {
         headers: {
-            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`
-        }
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("metier_token")}`}
     })
         .then(response => response.json())
 }
