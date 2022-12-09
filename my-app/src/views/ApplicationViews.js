@@ -12,7 +12,7 @@ export const ApplicationViews = () => {
       <Route path="/register" element={<Register  />} />
       <Route path="/registercreator" element={<CreatorRegister />} />
       <Route element={<Authorized />}>
-        {/* <Route path="/" element={< ServiceContainer  />} /> */}
+        <Route path="/" element={< ServiceContainer  />} />
         <Route path="/services" element={<ServiceContainer />} />
       
       </Route>
