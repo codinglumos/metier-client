@@ -3,8 +3,7 @@ export const getUsers = () => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-        }
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        }
     })
         .then(res => res.json())
 }
@@ -14,8 +13,7 @@ export const getUserById = (userId) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-        }
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        }
     })
         .then(res => res.json())
 }

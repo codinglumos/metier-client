@@ -3,8 +3,7 @@ export const getServices = () => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-        }
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        }
     })
         .then(response => response.json())
 }
@@ -15,8 +14,7 @@ export const getServiceById = (id) => {
         headers: {
              "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-        }
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        }
     })
         .then(response => response.json())
 }
@@ -27,8 +25,7 @@ export const deleteService = (serviceId) => {
         method: "DELETE",
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-    })
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`    })
 }
 
 export const saveEditedService = (service) => {
@@ -37,8 +34,7 @@ export const saveEditedService = (service) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("auth_token")}`
-        },
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_token")).token}`        },
         body: JSON.stringify(service)
     })
 }

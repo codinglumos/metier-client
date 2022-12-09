@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom"
 import { registerUser } from "../../managers/AuthManager"
 import "./Login.css"
 
-export const Register = () => {
+export const CreatorRegister = () => {
     const firstName = useRef()
     const lastName = useRef()
     const username = useRef()
     const profile_image = useRef()
+    const bio = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
@@ -22,6 +23,7 @@ export const Register = () => {
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "profile_image": profile_image.current.value,
+                "bio": bio.current.value,
                 "password": password.current.value
             }
 
@@ -70,6 +72,10 @@ export const Register = () => {
                 <fieldset>
                     <label htmlFor="verifyPassword"> Profile Image </label>
                     <textarea ref={profile_image} name="profile_image" className="form-control" placeholder="Upload your image here" />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="verifyPassword"> Bio </label>
+                    <textarea ref={bio} name="bio" className="form-control" placeholder="Tell the Metier Community about yourself..." />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
