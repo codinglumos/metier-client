@@ -1,49 +1,26 @@
-// import React from "react"
-// import { Route } from "react-router-dom"
-// import { CustomerList } from "./customers/CustomerList";
-// import { Employee } from "./employees/Employee";
-// import { EmployeeForm } from "./employees/EmployeeForm";
-// import { EmployeeList } from "./employees/EmployeeList";
-// import { Ticket } from "./serviceTickets/Ticket";
-// import { TicketForm } from "./serviceTickets/TicketForm";
-// import { TicketList } from "./serviceTickets/TicketList";
+import { Route, Routes } from "react-router-dom"
+import { Login } from "../components/auth/Login"
+import { Register } from "../components/auth/Register"
+import { ServiceContainer } from "../components/services/ServiceContainer"
+import { Authorized } from "./Authorized"
+import { CreatorRegister } from "../components/auth/CreatorRegister"
+import { ServiceForm } from "../components/services/ServiceForm"
+import { UpdateService } from "../components/services/ServiceEdit"
 
-// export const EmployeeViews = () => {
+export const CreatorViews = () => {
+  return <>
+     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register  />} />
+      <Route path="/registercreator" element={<CreatorRegister />} />
+      <Route element={<Authorized />}>
+        <Route path="/" element={< ServiceContainer  />} />
+        <Route path="/services" element={<ServiceContainer />} />
+        <Route path="/createservice" element={<ServiceForm />} />
+        <Route path="services/:serviceId/edit" element={ <UpdateService /> } />
 
-//     return (
-//         <>
-//             <Route exact path="/customers">
-//                 <CustomerList />
-//             </Route>
-
-//             <Route exact path="/">
-//                 <TicketList />
-//             </Route>
-
-//             <Route exact path="/tickets">
-//                 <TicketList />
-//             </Route>
-
-//             <Route exact path="/tickets/:ticketId(\d+)">
-//                 <Ticket />
-//             </Route>
-
-//             <Route path="/tickets/create">
-//                 <TicketForm />
-//             </Route>
-
-//             <Route exact path="/employees">
-//                 <EmployeeList />
-//             </Route>
-
-//             <Route exact path="/employees/:employeeId(\d+)">
-//                 <Employee />
-//             </Route>
-
-//             <Route path="/employees/create">
-//                 <EmployeeForm />
-//             </Route>
-
-//         </>
-//     )
-// }
+      
+      </Route>
+      </Routes>
+  </>
+}

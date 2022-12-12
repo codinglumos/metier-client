@@ -21,8 +21,8 @@ export const getServiceById = (id) => {
 }
 
 
-export const deleteService = (serviceId) => {
-    return fetch(`http://localhost:8000/services/${serviceId}`, {
+export const deleteService = (id) => {
+    return fetch(`http://localhost:8000/services/${id}`, {
         method: "DELETE",
         headers:{
             "Accept": "application/json",

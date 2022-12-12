@@ -1,21 +1,33 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
-import { createService, getServiceTypes, getUsers, getServices } from '../../managers/ServicesManager'
+import { createService, getUsers, getServices } from '../../managers/ServicesManager'
 
 
 export const ServiceForm = () => {
     const navigate = useNavigate()
     const [services, setServices] = useState([])
-    const [serviceTypes, setServiceTypes] = useState([])
+    //const [serviceTypes, setServiceTypes] = useState([])
     //const [users, setUsers] = useState([])
    
     const [newService, setNewService] = useState({
         service: "",
-        publication_date: Date.now(),
+        publication_date: "",
         body: "",
         image: "",
         price: 0
     })
+
+    const newDate = new Date()
+    const month = newDate.getUTCMonth() + 1
+    const date = newDate.getUTCDate()
+    const year = newDate.getUTCFullYear()
+    const formatDate = date.toLocaleString('en-us', {
+        minimumIntegerDigits: 2
+    })
+    const formatMonth = month.toLocaleString('en-us', {
+        minimumIntegerDigits: 2
+    })
+    const today = year + "-" + formatMonth + "-" + formatDate
 
     useEffect(() => {
         
@@ -32,8 +44,8 @@ export const ServiceForm = () => {
 
         const serviceToAPI = {
                 service: newService.service,
-                publication_date: newService.publication_date,
                 body: newService.body,
+                publication_date: today,
                 image: newService.image,
                 price: newService.price 
                        
@@ -63,6 +75,7 @@ export const ServiceForm = () => {
                     />
                 </div>
                 </fieldset>
+                
                 <fieldset>
                 <div className="form-group">
                     <label htmlFor="image">Image: </label>
@@ -108,6 +121,7 @@ export const ServiceForm = () => {
                     />
                 </div>
                 </fieldset>
+
                 <fieldset>
                 <div className="form-group">
                     <label htmlFor="body">Tell us about your service here... </label>
@@ -120,10 +134,8 @@ export const ServiceForm = () => {
                         }}
                     />
                 </div>
-
             </fieldset>
 
-            {/* TODO: create the rest of the input fields */}
 
             <button onClick={changeServiceState} className="btn btn-primary">
                 Submit Service
