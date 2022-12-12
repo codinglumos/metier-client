@@ -64,17 +64,17 @@ export const AllServices = ({searchServicesState}) => {
     const servicesToPrint = searchServicesState != "" ? filteredServices : services
     
     return <article className="services">
-        <h2 className="servicesHeader title is-3">All Services</h2>
+        <h2 className="servicesHeader title is-3">Metier Services</h2>
 
         {
             servicesToPrint.map(
             (service) => {
                         return <React.Fragment key={`services--${service.id}`}>
-                            <div className="columns box" id="services__serviceDetails">
+                            <div className="columns box" id="services">
                                 <section className="serviceDetails column">
                                     <div className="service">Service: <Link className="servicelink" to={`/services/${service.id}`} >{service.service}</Link></div>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {service?.creator?.full_name}</div>
-                                    <div className="date has-text-left" key={`service--${service.id}`}>Date Created: {service.publication_date}</div>
+                                    <div className="service-image">Service: {service.image}</div>
+
                                     <div className="reactions">
                                     {
                                         metierUserObject.customer
@@ -107,6 +107,7 @@ export const AllServices = ({searchServicesState}) => {
                                     }
                                     </div>
                                 </section>
+                               
                                 <div className="delete_service">
                                     {
                                         metierUserObject.staff
@@ -120,6 +121,7 @@ export const AllServices = ({searchServicesState}) => {
                                     {
                                         metierUserObject.staff
                                             ? <button className="btn_edit-service button" onClick={() => { serviceEdit(service) }}>Edit</button>
+                                            //window.alert("Service has been updated.")
                                             : <></>
 
                                     }

@@ -1,16 +1,14 @@
-import React from "react"
-import { Link, useNavigate } from "react-router-dom"
-import "./NavBar.css"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
-export const CreatorNavBar = () => {
+export const CustomerNavBar = () => {
     const navigate = useNavigate()
-
+    
     return (
         <div className="navbar">
             <div className="navbar__item">
-                <Link className="navbar__link" to="/services">Services</Link>
-                <Link className="navbar__link" to="/createservice">Create New Service</Link>           
-                <Link className="navbar__link" to="/myservices">My Services</Link> 
+            <Link className="navbar__link" to="/services">Services</Link>
+
             </div>
             {
                 (localStorage.getItem("metier_token") !== null) ?
@@ -31,5 +29,7 @@ export const CreatorNavBar = () => {
                         </div>
                     </>
             }        </div>
+
     )
-}
+
+  }

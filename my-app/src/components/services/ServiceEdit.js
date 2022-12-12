@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
-import { createService, getServices, getServiceById, updateService } from '../../managers/ServiceManager.js'
+import { createService, getServices, getServiceById, updateService } from '../../managers/ServicesManager'
 
 
 export const UpdateService = () => {
@@ -26,9 +26,9 @@ export const UpdateService = () => {
 
       const updatedService = (evt) => {
         evt.preventDefault()
-
+        window.alert("Service has been updated.")
         
-        return editService(newService)
+        return updateService(newService)
         .then(() => navigate(`/services`))
     }
 

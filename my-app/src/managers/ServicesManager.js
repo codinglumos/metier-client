@@ -27,7 +27,7 @@ export const deleteService = (id) => {
         headers:{
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("metier_token")}`
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`
         }
     })
 }
@@ -38,8 +38,8 @@ export const updateService = (service) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("metier_token")}`
-        },
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`}
+        ,
         body: JSON.stringify(service)
     })
 }
@@ -50,7 +50,7 @@ export const createService = (service) => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("metier_token")}`
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`
         },
         body: JSON.stringify(service)
     })

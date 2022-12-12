@@ -1,24 +1,25 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getCategories } from "../../managers/CategoryManager"
-import { deleteservice, getservices } from "../../managers/servicesManger"
-import { getUsers } from "../../managers/UserManager"
-import "./services.css"
+import { getServices, deleteService } from "../../managers/ServicesManager"
+import { getUsers } from "../../managers/UserManger"
+import "./Services.css"
 
 export const MyServices = () => {
 
-    const [allServices, setAllservices] = useState([])
+    const [services, setServices] = useState([])
     const [filteredServices, setFilteredservices] = useState([])
     const [allUsers, setUsers] = useState([])
-    const [dateSortedServices, setDateSortedServices] = useState([])
+
+    const localMetierUser = localStorage.getItem("metier_user")
+    const metierUserObject = JSON.parse(localMetierUser)
 
     const navigate = useNavigate()
 
     useEffect(
         () => {
-            getservices()
-                .then((allServicesArray) => {
-                    setAllservices(allServicesArray)
+            getServices()
+                .then((servicesArray) => {
+                    setServices(servicesArray)
                 })
         },
         []
@@ -26,10 +27,10 @@ export const MyServices = () => {
 
     useEffect(
         () => {
-            const myServices = allServices.filter(allService => allService.user_id === metierUserObject.id)
+            const myServices = services.filter(service => service.user_id === metierUserObject.id)
             setFilteredservices(myServices)
         },
-        [allServices]
+        [services]
     )
 
 
@@ -41,46 +42,39 @@ export const MyServices = () => {
                 })
         }, []
     )
-
-    useEffect(
-        () => {
-            const sortServices = filteredServices.sort((a, b) => (a.publication_date - b.publication_date) ? -1 : 1)
-            setDateSortedServices(sortServices)
-        }, [filteredServices]
-    )
-
-   
-    const confirmDelete = (evt, dateSortedService) => {
-        let text = 'Are you sure you want to delete'
+ 
+    const serviceEdit = (service) => {
+        let text = 'Are you sure you want to edit this service?'
         window.confirm(text)
-            ? deleteService(dateSortedService.id).then(() => navigate("/services"))
+            ? navigate(`/services/${service.id}/edit`)
             : <></>
     }
 
-    return <article className="allServices">
-        <h2 className="servicesHeader">{metierUserObject.username}'s Services: </h2>
+    const confirmDelete = (evt, filteredService) => {
+        let text = 'Are you sure you want to delete'
+        // whenever confirmed by clicking OK/Cancel window.confirm() returns boolean 
+        window.confirm(text)
+            ? deleteService(filteredService.id).then(() => navigate("/services"))
+            : <></>
+    }
+
+    return <article className="services">
+        <h2 className="servicesHeader title is-3">{metierUserObject.username}'s Services: </h2>
         {
-            dateSortedServices.map(
-                (dateSortedService) => {
-                    if (dateSortedService.category_id === categoryId || categoryId === 0)
+            filteredServices.map(
+                (filteredService) => {
                         return <>
                             <div className=" columns box" id="service__myService">
-                                <section className="serviceDetails column" key={`service--${dateSortedService.id}`}>
-                                    <div className="titleDiv"><Link className="" to={`/services/${dateSortedService.id}`}>Title: {dateSortedService.title}</Link></div>
-                                    {
-                                        allUsers.map((user) => {
-                                            if (user.id === dateSortedService.user_id)
-                                                return <div className="authorDiv has-text-left" key={`category--${user.id}`}>Author: {user.username}</div>
-                                        })
-                                    }
-                                    <div className="contentDiv has-text-left" >Content: {dateSortedService.content}</div>
-                                    <footer className="serviceFooter has-text-left" >Date: {dateSortedService.publication_date}</footer>
+                                <section className="serviceDetails column" key={`service--${filteredService.id}`}>
+                                    <div className="myservices"><Link className="" to={`/services/${filteredService.id}`}>Service: {filteredServices.service}</Link></div>
+                                    <div className="creator has-text-left" key={`service--${filteredService.id}`}>Creator: {filteredService?.creator?.full_name}</div>
+                                    <div className="date has-text-left" key={`filteredService--${filteredService.id}`}>Date Created: {filteredService.publication_date}</div>
+                                    <div className="body" >Information: {filteredService.body}</div>
+                                    <footer className="serviceFooter has-text-left" >Date: {filteredService.publication_date}</footer>
                                 </section>
                                 <footer className="cardButtons">
-                                    <button>
-                                        Edit Service
-                                    </button>
-                                    <button className="btn_delete-service " key={`service-${dateSortedService.id}`} onClick={(evt) => { confirmDelete(evt, dateSortedService) }}>Delete Service </button>
+                                <button className="btn_edit-service button" onClick={() => { serviceEdit(filteredService) }}>Edit</button>
+                                    <button className="btn_delete-service " key={`service-${filteredService.id}`} onClick={(evt) => { confirmDelete(evt, filteredService) }}>Delete</button>
                                 </footer>
                             </div>
                         </>
