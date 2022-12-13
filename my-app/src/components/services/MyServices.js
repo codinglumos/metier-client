@@ -50,7 +50,7 @@ export const MyServices = () => {
             : <></>
     }
 
-    const confirmDelete = (evt, filteredService) => {
+    const confirmDelete = (filteredService) => {
         let text = 'Are you sure you want to delete'
         // whenever confirmed by clicking OK/Cancel window.confirm() returns boolean 
         window.confirm(text)
@@ -66,8 +66,8 @@ export const MyServices = () => {
                         return <>
                             <div className=" columns box" id="service__myService">
                                 <section className="serviceDetails column" key={`service--${filteredService.id}`}>
-                                    <div className="myservices"><Link className="" to={`/services/${filteredService.id}`}>Service: {filteredServices.service}</Link></div>
-                                    <div className="creator has-text-left" key={`service--${filteredService.id}`}>Creator: {filteredService?.creator?.full_name}</div>
+                                    <div className="myservices">Service: {filteredServices.service}</div>
+                                    <div className="creator has-text-left" key={`service--${filteredService.id}`}>Creator: {user.full_name}</div>
                                     <div className="date has-text-left" key={`filteredService--${filteredService.id}`}>Date Created: {filteredService.publication_date}</div>
                                     <div className="body" >Information: {filteredService.body}</div>
                                     <footer className="serviceFooter has-text-left" >Date: {filteredService.publication_date}</footer>

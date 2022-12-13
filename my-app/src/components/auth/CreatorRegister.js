@@ -29,9 +29,10 @@ export const CreatorRegister = () => {
 
             registerUser(newUser)
                 .then(res => {
-                    if ("token" in res) {
-                        localStorage.setItem("metier_token", res.token)
-                        navigate("/")
+                    if ("valid" in res && res.valid && "token" in res) {
+                        localStorage.setItem("metier_user", JSON.stringify(res))
+                     //nav to home when it is made!!
+                        navigate("/services")
                     }
                 })
         } else {

@@ -2,11 +2,12 @@ import { CreatorViews} from "./CreatorView"
 import { CustomerViews } from "./CustomerView"
 
 export const ApplicationViews = () => {
-  
+
  const localMetierUser = localStorage.getItem("metier_user")
  const metierUserObject = JSON.parse(localMetierUser)
 
- if(metierUserObject.staff) {
+ 
+ if(metierUserObject && metierUserObject.staff) {
   return <CreatorViews/>
  }
 

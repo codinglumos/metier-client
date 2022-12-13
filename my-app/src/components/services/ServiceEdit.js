@@ -37,8 +37,8 @@ export const UpdateService = () => {
         <h2 className="serviceForm__service"></h2>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="service">Service: </label>
-                <input type="text" name="service" required autoFocus className="form-control"
+                <label htmlFor="service">Update Service: </label>
+                <input key={`service--${newService.service}`} type="text" name="service" required autoFocus className="form-control"
                     value={newService.service}
                     onChange={
                         (evt) => {
@@ -52,8 +52,8 @@ export const UpdateService = () => {
             
             <fieldset>
             <div className="form-group">
-                <label htmlFor="image">Image: </label>
-                <input type="text" name="image" required autoFocus className="form-control"
+                <label htmlFor="image">Update Image: </label>
+                <input key={`service--${newService.image}`} type="text" name="image" required autoFocus className="form-control"
                     value={newService.image}
                     onChange={
                         (evt) => {
@@ -67,8 +67,8 @@ export const UpdateService = () => {
             
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="price">Price: </label>
-                    <input type="number" name="price" required autoFocus className="form-control"
+                    <label htmlFor="price">Update Price: </label>
+                    <input key={`service--${newService.price}`} type="number" name="price" required autoFocus className="form-control"
                         value={newService.price}
                         onChange={(evt) => {
                             const copy = structuredClone(newService)
@@ -81,8 +81,8 @@ export const UpdateService = () => {
 
                 <fieldset>
                 <div className="form-group">
-                    <label htmlFor="body">Tell us about your service here... </label>
-                    <input type="text" name="body" required autoFocus className="form-control"
+                    <label htmlFor="body">Update information about your service here... </label>
+                    <input key={`service--${newService.body}`} type="text" name="body" required autoFocus className="form-control"
                         value={newService.body}
                         onChange={(evt) => {
                             const copy = structuredClone(newService)

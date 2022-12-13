@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export const CustomerNavBar = () => {
     const navigate = useNavigate()
-    
+
     return (
         <div className="navbar">
             <div className="navbar__item">
@@ -11,11 +11,11 @@ export const CustomerNavBar = () => {
 
             </div>
             {
-                (localStorage.getItem("metier_token") !== null) ?
+                (localStorage.getItem("metier_user") !== null) ?
                     <div className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("metier_token")
+                                localStorage.removeItem("metier_user")
                                 navigate('/login')
                             }}
                         >Logout</button>
