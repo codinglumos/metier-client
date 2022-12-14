@@ -9,6 +9,7 @@ export const CreatorRegister = () => {
     const username = useRef()
     const profile_image = useRef()
     const bio = useRef()
+    const email = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
@@ -22,18 +23,23 @@ export const CreatorRegister = () => {
                 "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
+                "email": email.current.value,
                 "profile_image": profile_image.current.value,
                 "bio": bio.current.value,
-                "password": password.current.value
+                "password": password.current.value,
+                "account_type": "staff"
             }
 
             registerUser(newUser)
                 .then(res => {
                     if ("valid" in res && res.valid && "token" in res) {
                         localStorage.setItem("metier_user", JSON.stringify(res))
+                        localStorage.setItem("is_staff", JSON.stringify(res.staff))
+
                      //nav to home when it is made!!
-                        navigate("/services")
+                        
                     }
+                    navigate("/services")
                 })
         } else {
             passwordDialog.current.showModal()
@@ -61,6 +67,10 @@ export const CreatorRegister = () => {
                 <fieldset>
                     <label htmlFor="inputUsername">Username</label>
                     <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputEmail">Email</label>
+                    <input ref={email} type="text" name="email" className="form-control" placeholder="Email" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputPassword"> Password </label>

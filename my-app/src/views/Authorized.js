@@ -11,11 +11,11 @@ export const Authorized = () => {
 
 if (localStorage.getItem("metier_user") && metierStaff) {
   return <><Outlet /> <CreatorViews /></>
-  
+
 } else if (localStorage.getItem("metier_user") && !metierStaff){
   return <><Outlet /> <CustomerViews /></>
 }
 
-return <Navigate to='login' replace />
+return <Navigate to='/login' replace />
 
 }

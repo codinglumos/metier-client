@@ -136,6 +136,7 @@ export const AllServices = ({searchServicesState}) => {
                                 <div className="edit_service">
                                     {
                                         metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.user)
+                                      
                                             ? <button className="btn_edit-service button" onClick={() => { serviceEdit(service) }}>Edit</button>
                                             //window.alert("Service has been updated.")
                                             : <></>

@@ -72,21 +72,22 @@ export const UpdateService = () => {
                     />
                 </div>
             </fieldset>
-            <button type= "submit"
+            <button type="submit"
             
             onClick={evt => {
              evt.preventDefault()
              window.alert("Service has been updated.")
 
-             const service = {
+             const serviceDone = {
                     id: newService.id,
                     service: newService.service,
-                    bodyimage: newService.body,
+                    body: newService.body,
+                    image: newService.image,
                     price: newService.price
              }
                 
-                updateService(service)
-                .then(() => navigate(`/services`))
+                updateService(serviceDone)
+                .then(() => navigate("/services"))
             }}
             className="btn btn-primary">
                 Update Service

@@ -25,6 +25,7 @@ export const Login = () => {
                     //nav to home when it is made!!
                     navigate("/services")
                 }
+                
                 else {
                     invalidDialog.current.showModal()
                 }
@@ -80,6 +81,7 @@ Both:
 AND DETAILS 
 ?-search by service
 -can see the count of different emojis on services posted
+-LOGO from Canva!!
 
 Creators:
 ?-read a list of services 
