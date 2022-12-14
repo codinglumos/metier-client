@@ -3,8 +3,8 @@ export const getServices = () => {
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("metier_token")}`}
-    })
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`}
+        })
         .then(response => response.json())
 }
 
@@ -14,7 +14,7 @@ export const getServiceById = (id) => {
         headers:{
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": `Token ${localStorage.getItem("metier_token")}`
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`
         }
     })
     .then(response => response.json())

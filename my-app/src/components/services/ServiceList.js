@@ -13,13 +13,24 @@ export const AllServices = ({searchServicesState}) => {
     const [filteredServices, setFiltered ] = useState ([])
     const localMetierUser = localStorage.getItem("metier_user")
     const metierUserObject = JSON.parse(localMetierUser)
-    const [isChecked, setIsChecked] = useState(false)
+    const [checkedReaction, setCheckedReactions] = useState(new Set())
+    const [user, setUsers] = useState([])
 
     useEffect(
         () => {
             getServices()
                 .then((servicesArray) => {
                     setServices(servicesArray)
+                })
+        },
+        []
+    )
+
+    useEffect(
+        () => {
+            getUsers()
+                .then((usersArray) => {
+                    setUsers(usersArray)
                 })
         },
         []
@@ -43,10 +54,6 @@ export const AllServices = ({searchServicesState}) => {
         [searchServicesState]
     )
     
-    const handleOnChange = () => {
-        setIsChecked(!isChecked);
-      };
-
     const confirmDelete = (evt, service) => {
         let text = 'Are you sure you want to delete this service?'
         window.confirm(text)
@@ -72,12 +79,16 @@ export const AllServices = ({searchServicesState}) => {
                         return <React.Fragment key={`services--${service.id}`}>
                             <div className="columns box" id="services">
                                 <section className="serviceDetails column">
-                                    <div className="service">Service: <Link className="servicelink" to={`/services/${service.id}`} >{service.service}</Link></div>
-                                    <div className="service-image">Service: {service.image}</div>
+                                    {/* link to details later? */}
+                                    <div className="service" key={`service--${service.service}`}>Service: 
+                                    <Link className="servicelink" to={`/services/${service.id}`} >{service.service}</Link>
+                                    </div>
+                                    <img src={service.image} className="image" key={`service--${service.image}`}/>
+                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {metierUserObject.first_name} {metierUserObject.last_name}</div>
 
                                     <div className="reactions">
                                     {
-                                        metierUserObject.customer
+                                        !metierUserObject.staff
                                             ? <fieldset>
                                             <div className="form-group">
                                                 <label htmlFor="reaction">Reaction:</label>
@@ -88,11 +99,16 @@ export const AllServices = ({searchServicesState}) => {
                                                         <input
                                                             type="checkbox"
                                                             className="addReaction"
-                                                            value={service.reactions}
-                                                            checked={isChecked}
+                                                            value={service.reaction}
                                                             onChange={
                                                                 () => {
-                                                                    handleOnChange()
+                                                                    const copy = new Set(checkedReaction)
+                                                                    if(copy.has(reaction.id)){
+                                                                        copy.delete(reaction.id)
+                                                                    } else {
+                                                                        copy.add(reaction.id)
+                                                                    }
+                                                                    setCheckedReactions(copy)
                                                                 }
                                                             }
                                                             />
@@ -110,7 +126,7 @@ export const AllServices = ({searchServicesState}) => {
                                
                                 <div className="delete_service">
                                     {
-                                        metierUserObject.staff
+                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.user)
                                             ? <button className="btn_delete-service button" onClick={(evt) => { confirmDelete(evt, service) }}>Delete</button>
                                             : ""
 
@@ -119,7 +135,8 @@ export const AllServices = ({searchServicesState}) => {
 
                                 <div className="edit_service">
                                     {
-                                        metierUserObject.staff
+                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.user)
+                                      
                                             ? <button className="btn_edit-service button" onClick={() => { serviceEdit(service) }}>Edit</button>
                                             //window.alert("Service has been updated.")
                                             : <></>

@@ -11,6 +11,7 @@ export const Register = () => {
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
+    const email = useRef()
     const navigate = useNavigate()
 
     const handleRegister = (e) => {
@@ -22,15 +23,19 @@ export const Register = () => {
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "profile_image": profile_image.current.value,
-                "password": password.current.value
+                "email": email.current.value,
+                "password": password.current.value, 
+                "account_type": "customer"
             }
 
             registerUser(newUser)
                 .then(res => {
-                    if ("token" in res) {
-                        localStorage.setItem("metier_token", res.token)
-                        navigate("/")
+                  if ("valid" in res && res.valid && "token" in res) {
+                    localStorage.setItem("metier_user", JSON.stringify(res))
+                    //nav to home when it is made!!
+                       
                     }
+                    navigate("/services")
                 })
         } else {
             passwordDialog.current.showModal()
@@ -68,7 +73,11 @@ export const Register = () => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Profile Image </label>
+                    <label htmlFor="inputemail"> Email </label>
+                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputimage"> Profile Image </label>
                     <textarea ref={profile_image} name="profile_image" className="form-control" placeholder="Upload your image here" />
                 </fieldset>
                 <fieldset style={{

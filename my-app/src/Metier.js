@@ -1,11 +1,11 @@
+import { NavBar } from "../src/components/nav/NavBar"
 import { ApplicationViews } from "./views/ApplicationViews"
-import { NavBar } from "./components/nav/NavBar"
-
+import "./Metier.css"
 
 export const Metier = () => (
-    <>
-        <NavBar />
-        <ApplicationViews />
-    </>
+  <>
+      <NavBar />
+      <ApplicationViews />
+  </>
 )
 

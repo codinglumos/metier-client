@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
-import { createService, getServices, getServiceById, updateService } from '../../managers/ServicesManager'
+import { getServiceById, updateService } from '../../managers/ServicesManager'
 
 
 export const UpdateService = () => {
     const navigate = useNavigate()
-    const [services, setServices] = useState([])
+    const { serviceId } = useParams()
  
     const [newService, setNewService] = useState({
+        id: 0,
         service: "",
         body: "",
         image: "",
@@ -16,83 +17,79 @@ export const UpdateService = () => {
 
     useEffect(() => {
         
-        getServices()
-        .then((serviceArray) => {
-            setServices(serviceArray)
-        })
+        getServiceById(serviceId)
+        .then(setNewService)
             
-    }, []
+    }, [serviceId]
     )
 
-      const updatedService = (evt) => {
-        evt.preventDefault()
-        window.alert("Service has been updated.")
-        
-        return updateService(newService)
-        .then(() => navigate(`/services`))
+    const changeServiceState = (evt) => {
+        const copy = {...newService}
+        const propertyToChange = evt.target.id
+        copy[propertyToChange] = evt.target.value
+        setNewService(copy)
     }
-
+ 
     return (
         <form className="serviceForm">
         <h2 className="serviceForm__service"></h2>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="service">Service: </label>
-                <input type="text" name="service" required autoFocus className="form-control"
+                <label htmlFor="service">Update Service: </label>
+                <input type="text" id="service" required autoFocus className="form-control"
                     value={newService.service}
-                    onChange={
-                        (evt) => {
-                        const copy = structuredClone(newService)
-                        copy.service = evt.target.value
-                        setNewService(copy)
-                    }}
+                    onChange={changeServiceState}
                 />
             </div>
             </fieldset>
             
             <fieldset>
             <div className="form-group">
-                <label htmlFor="image">Image: </label>
-                <input type="text" name="image" required autoFocus className="form-control"
+                <label htmlFor="image">Update Image: </label>
+                <input key={`service--${newService.image}`} type="text" id="image" required autoFocus className="form-control"
                     value={newService.image}
-                    onChange={
-                        (evt) => {
-                        const copy = structuredClone(newService)
-                        copy.image = evt.target.value
-                        setNewService(copy)
-                    }}
+                    onChange={changeServiceState}
                 />
             </div>
             </fieldset>
             
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="price">Price: </label>
-                    <input type="number" name="price" required autoFocus className="form-control"
+                    <label htmlFor="price">Update Price: </label>
+                    <input key={`service--${newService.price}`} type="number" id="price" required autoFocus className="form-control"
                         value={newService.price}
-                        onChange={(evt) => {
-                            const copy = structuredClone(newService)
-                            copy.price = evt.target.value
-                            setNewService(copy)
-                        }}
+                        onChange={changeServiceState}
                     />
                 </div>
                 </fieldset>
 
                 <fieldset>
                 <div className="form-group">
-                    <label htmlFor="body">Tell us about your service here... </label>
-                    <input type="text" name="body" required autoFocus className="form-control"
+                    <label htmlFor="body">Update information about your service here... </label>
+                    <input key={`service--${newService.body}`} type="text" id="body" required autoFocus className="form-control"
                         value={newService.body}
-                        onChange={(evt) => {
-                            const copy = structuredClone(newService)
-                            copy.body = evt.target.value
-                            setNewService(copy)
-                        }}
+                        onChange={changeServiceState}
                     />
                 </div>
             </fieldset>
-            <button onClick={(evt) => updatedService(evt)} className="btn btn-primary">
+            <button type="submit"
+            
+            onClick={evt => {
+             evt.preventDefault()
+             window.alert("Service has been updated.")
+
+             const serviceDone = {
+                    id: newService.id,
+                    service: newService.service,
+                    body: newService.body,
+                    image: newService.image,
+                    price: newService.price
+             }
+                
+                updateService(serviceDone)
+                .then(() => navigate("/services"))
+            }}
+            className="btn btn-primary">
                 Update Service
             </button>
         </form>
