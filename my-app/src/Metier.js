@@ -1,38 +1,11 @@
+import { NavBar } from "../src/components/nav/NavBar"
 import { ApplicationViews } from "./views/ApplicationViews"
-import { NavBar } from "./components/nav/NavBar"
-import { useEffect, useState } from "react"
+import "./Metier.css"
 
-
-export const Metier = () => {
-  const localMetierUser = localStorage.getItem("metier_user")
-  const metierUserObject = JSON.parse(localMetierUser)
-
-  const [validUser, updateValidUser] = useState(false)
-
-  useEffect(() => {
-    if(metierUserObject) {
-      updateValidUser(metierUserObject.valid) 
-
-    } else {
-      updateValidUser(false) 
-
-    }
-        
-  }, [localMetierUser]
+export const Metier = () => (
+  <>
+      <NavBar />
+      <ApplicationViews />
+  </>
 )
-
-  return (
-    <>
-    {
-    validUser 
-    ? <NavBar />
-    : <></>
-    }
-    
-    <ApplicationViews />
-</>
-  )
-}
-   
-
 

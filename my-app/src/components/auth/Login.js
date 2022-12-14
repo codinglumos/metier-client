@@ -20,7 +20,8 @@ export const Login = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("metier_user", JSON.stringify(res))
-                    
+                    localStorage.setItem("is_staff", JSON.stringify(res.staff))
+
                     //nav to home when it is made!!
                     navigate("/services")
                 }
@@ -78,6 +79,7 @@ Both:
 ?-react- react to services in the list of all 
 AND DETAILS 
 ?-search by service
+-can see the count of different emojis on services posted
 
 Creators:
 ?-read a list of services 
@@ -86,12 +88,13 @@ AND DETAILS (Myservices also for creators)
 -update- service.service with form
 -create- service.service- forms in modules
 ?-create- new service 
-~-update- service with form---> need to make it so the original info shows up when editing
+?-update- service with form---> need to make it so the original info shows up when editing
 ?-delete- service.service (they created)
 
 Customers:
--read a list of favorites (each customer can)
+-read a list of favorites/bought?? (each customer can)
 -favorite services (or buy???)
+~-SAVE REACTIONS
 
 MVP:
 Data Requirements-->

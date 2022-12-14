@@ -84,7 +84,7 @@ export const AllServices = ({searchServicesState}) => {
                                     <Link className="servicelink" to={`/services/${service.id}`} >{service.service}</Link>
                                     </div>
                                     <img src={service.image} className="image" key={`service--${service.image}`}/>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {user.fullName}</div>
+                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {metierUserObject.first_name} {metierUserObject.last_name}</div>
 
                                     <div className="reactions">
                                     {
