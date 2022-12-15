@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getReactions } from "../../managers/ReactionManager"
-import { deleteService, getServices, updateService } from "../../managers/ServicesManager"
+import { deleteService, getServices } from "../../managers/ServicesManager"
 import { getUsers } from "../../managers/UserManger"
 import "./Services.css"
 
@@ -77,14 +77,14 @@ export const AllServices = ({searchServicesState}) => {
             servicesToPrint.map(
             (service) => {
                         return <React.Fragment key={`services--${service.id}`}>
-                            <div className="columns-box" id="services">
+                            <div className="service-boxes" id="services">
                                 <section className="serviceDetails column">
                                     {/* link to details later? */}
                                     <div className="service" key={`service--${service.service}`}>Service: 
                                     <Link className="servicelink" to={`/services/${service.id}`} >{service.service}</Link>
                                     </div>
                                     <img src={service.image} className="image" key={`service--${service.image}`}/>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {metierUserObject.first_name} {service.creator.user}</div>
+                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {service.creator.full_name}</div>
 
                                     <div className="reactions">
                                     {
@@ -128,7 +128,7 @@ export const AllServices = ({searchServicesState}) => {
                                
                                 <div className="delete_service">
                                     {
-                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.user)
+                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.id)
                                             ? <button className="btn_delete-service button" onClick={(evt) => { confirmDelete(evt, service) }}>Delete</button>
                                             : ""
 
@@ -137,7 +137,7 @@ export const AllServices = ({searchServicesState}) => {
 
                                 <div className="edit_service">
                                     {
-                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.user)
+                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.id)
                                       
                                             ? <button className="btn_edit-service button" onClick={() => { serviceEdit(service) }}>Edit</button>
                                             //window.alert("Service has been updated.")

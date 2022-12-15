@@ -1,17 +1,45 @@
-.columns-box {
+.service-boxes{
     background-color: #cb7c51;
     border: 4px solid #cb9b51;
     padding: 1rem;
     color:white;
     font-family: 'luminari';
     font-size: 18px;
+  
 }
 
 .form-group, .form-control {
     padding: 0.7rem;
     margin: 0.5rem 0;
     color: #cb9b51;
-    font-family: "Didact Gothic", serif;
+    font-family: "luminari";
     font-size: 14px;
     line-height: 1.5;
 }
+
+
+/*
+--COLOR PALLETE--
+Blues:
+423075
+14063A
+281758
+625192
+897BAF
+
+Greenish:
+A6A938
+FCFEA9
+D2D36A
+7C7F15
+525500
+
+Goldish:
+AA8639
+FFE4AA
+805D15
+553A00
+
+  display: grid;
+    grid-template-columns: 1fr 1fr;
+*/

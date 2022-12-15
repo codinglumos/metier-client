@@ -117,14 +117,5 @@ fieldset {
     
 }
 
-.inputUsername, .inputPassword {
-    color: black;
-    font-family: 'luminari';
-    display: flex;
-    justify-content: left;
-    font-size: 200px;
-    font-weight: 100;
-    text-shadow: 2px 3px #cb9b51;
-}
 
 /* #cbb951 */
