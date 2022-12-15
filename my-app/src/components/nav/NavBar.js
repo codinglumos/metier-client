@@ -1,3 +1,4 @@
+import React from "react"
 import { Link, useNavigate } from "react-router-dom"
 // import Logo from canva when ready!
 import "./NavBar.css"
@@ -22,29 +23,40 @@ export const NavBar = () => {
             </div>
             <div className="navbar-end nav-links">
                 <div className="navbar-menu">
-                    {
-                        (localStorage.getItem("metier_user") !== null && metierUserObject.staff) ?
-                            <div>
-                                <ul className="navbar-item">
-                                    <div className="navbar-item">
-                                        <li className="navbar__item">
+                   
+                      <div>
+                                <div className="navbar-item">
+                                { (localStorage.getItem("metier_user") !== null && metierUserObject.staff) ?
+                                   <> <div className="navbar-item">
+                                        <div className="navbar__item">
                                             <Link to="/createservice">Create New Service</Link>
-                                        </li>
+                                        </div>
                                     </div>
                                     <div className="navbar-item">
-                                        <li className="navbar__item">
+                                        <div className="navbar__item">
                                             <Link to="/myServices">My Services</Link>
-                                        </li>
+                                        </div>
+                                        
                                     </div>
+                                    </>
+                                    : <></>}
+
+                                { (localStorage.getItem("metier_user") !== null && !metierUserObject.staff) ?
+                                   <> 
                                     <div className="navbar-item">
-                                        <li className="navbar__item">
+                                        <div className="navbar__item">
                                             <Link to="/services">Services</Link>
-                                        </li>
+                                        </div>
                                     </div>
-                                </ul>
+                                        
+                                    </>
+                                    : <></>}
+                                    
+                                    
+
+                                </div>
                             </div>
-                            : <></>
-                    }
+                           
                     {
                         (localStorage.getItem("metier_user") !== null) ?
                             <li className="navbar-item">
@@ -57,7 +69,7 @@ export const NavBar = () => {
                                 >Logout</button>
                             </li> :
                             <>
-                                <div>
+                                {/* <div>
                                     <div className="navbar-item">
                                         <div className="navbar-item">
                                             <li className="nav-item">
@@ -70,7 +82,7 @@ export const NavBar = () => {
                                             </li>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </>
                     }
                 </div>

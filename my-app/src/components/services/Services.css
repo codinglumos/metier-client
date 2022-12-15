@@ -1,0 +1,17 @@
+.columns-box {
+    background-color: #cb7c51;
+    border: 4px solid #cb9b51;
+    padding: 1rem;
+    color:white;
+    font-family: 'luminari';
+    font-size: 18px;
+}
+
+.form-group, .form-control {
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+    color: #cb9b51;
+    font-family: "Didact Gothic", serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
