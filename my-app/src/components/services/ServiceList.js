@@ -77,14 +77,14 @@ export const AllServices = ({searchServicesState}) => {
             servicesToPrint.map(
             (service) => {
                         return <React.Fragment key={`services--${service.id}`}>
-                            <div className="columns box" id="services">
+                            <div className="columns-box" id="services">
                                 <section className="serviceDetails column">
                                     {/* link to details later? */}
                                     <div className="service" key={`service--${service.service}`}>Service: 
                                     <Link className="servicelink" to={`/services/${service.id}`} >{service.service}</Link>
                                     </div>
                                     <img src={service.image} className="image" key={`service--${service.image}`}/>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {metierUserObject.first_name} {metierUserObject.last_name}</div>
+                                    <div className="creator has-text-left" key={`service--${service.id}`}>Creator: {metierUserObject.first_name} {service.creator.user}</div>
 
                                     <div className="reactions">
                                     {
@@ -110,6 +110,8 @@ export const AllServices = ({searchServicesState}) => {
                                                                     }
                                                                     setCheckedReactions(copy)
                                                                 }
+                                                                //needs to be tied to the user id and the reaction id 
+                                                                //map over the reactions to check if they have been checked and update services with the new data
                                                             }
                                                             />
                                                         </>

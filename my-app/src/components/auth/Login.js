@@ -38,12 +38,15 @@ export const Login = () => {
                 <div>Username or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-            <section>
+            <h1 className="metier-title-login">Metier: “Everything you can imagine is real.” </h1> 
+
+            <section className="login-section">
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Metier</h1>
-                    <h2>Please sign in</h2>
+              
+                    <h2 className="metier-signin-login">Please sign in</h2>
+
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username address </label>
+                        <label htmlFor="inputUsername"> Username </label>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset>
@@ -58,7 +61,7 @@ export const Login = () => {
                 </form>
             </section>
             <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
+                <Link to="/register">Register as a New Metier Member</Link>
             </section>
             <section className="link--register">
                     <Link to="/registercreator">Register New Metier Creator</Link>
