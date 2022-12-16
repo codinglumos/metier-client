@@ -63,7 +63,7 @@ export const ServiceForm = () => {
             <h2 className="serviceForm__service"></h2>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="service">Service: </label>
+                    <label htmlFor="service">Artwork Title:</label>
                     <input type="text" name="service" required autoFocus className="form-control"
                         value={newService.service}
                         onChange={
@@ -90,24 +90,6 @@ export const ServiceForm = () => {
                     />
                 </div>
                 </fieldset>
-                {/* <fieldset>
-                <div className="select">
-                    <label className="servicetypes" htmlFor="servicetypes">Service Type:</label>
-                    <select  placeholder="Choose Service Type" className="form-control" id="servicetypes" value={newService.serviceTypeId}
-                        onChange={(evt) => {
-                        const copy = structuredClone(newService)
-                        copy.serviceTypeId = evt.target.value
-                        setNewService(copy)
-                        }}>
-                    <option value={serviceTypes}></option>
-                            {
-                     serviceTypes.map(servicetype => {
-                     return <option className="select option" value={servicetype.id} key={`servicetype--${servicetype.id}`}>{servicetype.label}</option>
-                        })
-                    }
-                </select>
-                </div>
-            </fieldset> */}
                 <fieldset>
                 <div className="form-group">
                     <label htmlFor="price">Price: </label>
@@ -124,7 +106,7 @@ export const ServiceForm = () => {
 
                 <fieldset>
                 <div className="form-group">
-                    <label htmlFor="body">Tell us about your service here... </label>
+                    <label htmlFor="body">Tell us about your art here... </label>
                     <input type="text" name="body" required autoFocus className="form-control"
                         value={newService.body}
                         onChange={(evt) => {

@@ -5,7 +5,7 @@ export const ServiceSearch = ({ setterFunction }) => {
 
     return (
         <div className="search">
-         <input className="searchterms" type="text" placeholder="Search for Service"
+         <input className="searchterms" type="text" placeholder="Search for Artwork"
          onChange={
              (changeEvent) => {
                  setterFunction(changeEvent.target.value)

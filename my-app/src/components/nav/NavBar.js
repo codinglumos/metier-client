@@ -9,7 +9,7 @@ export const NavBar = () => {
     const metierUserObject = JSON.parse(localMetierUser)
     
     return (
-        <nav className="navbar has-shadow is-warning mb-5" role="navigation" aria-label="main navigation">
+        <nav className="navbar-container" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="/">
                     {/* <img src={Logo} height="3rem" alt="React Logo" /> <h1 className="title is-4 ml-3">Level UP</h1> */}
@@ -21,54 +21,73 @@ export const NavBar = () => {
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div className="navbar-end nav-links">
+            <div className="navbar-end-nav-links">
                 <div className="navbar-menu">
                    
                       <div>
-                                <div className="navbar-item">
+                                <div className="navbar">
                                 { (localStorage.getItem("metier_user") !== null && metierUserObject.staff) ?
-                                   <> <div className="navbar-item">
+                                   <><div className="navbar-item">
+                                   <div className="navbar__item">
+                                       <Link className="navbar__item" to="/home"> Metier Homepage</Link>
+                                   </div>
+                                  </div> 
+                                  <div className="navbar-item">
                                         <div className="navbar__item">
-                                            <Link to="/createservice">Create New Service</Link>
+                                            <Link className="navbar__item" to="/services"> All Metier Artwork</Link>
                                         </div>
                                     </div>
+
+                                   <div className="navbar-item">
+                                        <div className="navbar__item">
+                                            <Link className="navbar__item" to="/createservice">Add Metier Artwork</Link>
+                                        </div>
+                                    </div>
+
                                     <div className="navbar-item">
                                         <div className="navbar__item">
-                                            <Link to="/myServices">My Services</Link>
+                                            <Link className="navbar__item" to="/myServices">My Artwork</Link>
                                         </div>
                                         
                                     </div>
+                                    
                                     </>
                                     : <></>}
 
                                 { (localStorage.getItem("metier_user") !== null && !metierUserObject.staff) ?
                                    <> 
+                                   <div className="navbar-item">
+                                   <div className="navbar__item">
+                                       <Link className="navbar__item" to="/memberhome"> Metier Member Homepage</Link>
+                                   </div>
+                                  </div> 
+
                                     <div className="navbar-item">
                                         <div className="navbar__item">
-                                            <Link to="/services">Services</Link>
+                                            <Link className="navbar__item" to="/services"> Metier Artwork</Link>
                                         </div>
                                     </div>
                                         
                                     </>
                                     : <></>}
                                     
-                                    
-
-                                </div>
-                            </div>
-                           
-                    {
+                                    {
                         (localStorage.getItem("metier_user") !== null) ?
-                            <li className="navbar-item">
-                                <button className="nav-link fakeLink is-link"
+                            <div>
+                                <button className="navbar-logout"
                                     onClick={() => {
                                         localStorage.removeItem("metier_user");
                                         localStorage.removeItem("is_staff")
                                         navigate('/login')
                                     }}
                                 >Logout</button>
-                            </li> : <></>     
-                    }
+                            </div> : <></>     
+                    } 
+
+                                </div>
+                            </div>
+                           
+                 
                 </div>
             </div>
         </nav >

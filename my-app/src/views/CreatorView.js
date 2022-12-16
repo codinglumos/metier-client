@@ -12,7 +12,7 @@ export const CreatorViews = () => {
         <Route path="/services" element={<ServiceContainer />} />
         <Route path="/createservice" element={<ServiceForm />} />
         <Route path="services/:serviceId/edit" element={ <UpdateService /> } />
-        <Route path="/myservices" element={<MyServices />} />
+        <Route path="/myServices" element={<MyServices />} />
 
       </Routes>
   </>
