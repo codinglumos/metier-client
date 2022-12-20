@@ -38,7 +38,7 @@ export const Login = () => {
                 <div>Username or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-            <h1 className="metier-title-login">Metier: “Everything you can imagine is real.” </h1> 
+            <h1 className="metier-title-login">Metier: “Every artist was first an amateur. ―Ralph Waldo Emerson” </h1> 
 
             <section className="login-section">
                 <form className="form--login" onSubmit={handleLogin}>
