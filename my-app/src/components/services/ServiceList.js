@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getReactions } from "../../managers/ReactionManager"
-import { deleteService, getServices } from "../../managers/ServicesManager"
+import { deleteService, getServices, updateService } from "../../managers/ServicesManager"
 import { getUsers } from "../../managers/UserManger"
 import "./Services.css"
 
@@ -14,7 +14,6 @@ export const AllServices = ({searchServicesState}) => {
     const localMetierUser = localStorage.getItem("metier_user")
     const metierUserObject = JSON.parse(localMetierUser)
     const [checkedReaction, setCheckedReactions] = useState(new Set())
-    const [user, setUsers] = useState([])
 
     useEffect(
         () => {
@@ -26,6 +25,8 @@ export const AllServices = ({searchServicesState}) => {
         []
     )
 
+
+
     useEffect(
         () => {
             getReactions()
@@ -34,11 +35,13 @@ export const AllServices = ({searchServicesState}) => {
                 })
         }, []
     )
-
+//need to make this filter by creator
     useEffect(
         () => {
             const searchedServices = services.filter(service => 
-                {return service?.service?.toLowerCase().includes(searchServicesState.toLowerCase())})      
+                {
+                    return service?.service?.toLowerCase().includes(searchServicesState.toLowerCase())
+                || service?.creator?.full_name.toLowerCase().includes(searchServicesState.toLowerCase())})      
            searchServicesState === "" ? setFiltered(services) :setFiltered(searchedServices)
         },
         [searchServicesState]
@@ -69,12 +72,11 @@ export const AllServices = ({searchServicesState}) => {
                         return <section key={`services--${service.id}`} className="service-container">
                             <div className="service-boxes" id="services">
                                 <div className="serviceDetails-column">
-                                    {/* link to details later? */}
                                     <div className="service" key={`service--${service.service}`}>Artwork Title: 
                                     <Link className="servicelink" to={`/services/${service.id}`} > {service.service}</Link>
                                     </div>
                                     <img src={service.image} className="creator-image" key={`service--${service.image}`}/>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Created By: {service.creator.full_name}</div>
+                                    <div className="creator has-text-left" key={`service--${service.id}`}>Created By: <Link className="creatorlink" to={`/creators/${service.creator.id}`}>{service.creator.full_name}</Link></div>
                                     <div className="creator has-text-left" key={`service--${service.id}`}>Price: ${service.price}</div>
                                     <div className="creator has-text-left" key={`service--${service.id}`}>Date: {service.publication_date}</div>
                                     <div className="creator has-text-left" key={`service--${service.id}`}>{service.reactions}</div>
@@ -101,6 +103,11 @@ export const AllServices = ({searchServicesState}) => {
                                                                         copy.add(reaction.id)
                                                                     }
                                                                     setCheckedReactions(copy)
+                                                                    service.reactions = [...service.reactions, {
+                                                                        reaction: parseInt(reaction.id),
+                                                                        customer: parseInt(metierUserObject.id)
+                                                                    }]
+                                                                    updateService(service)
                                                                 }
                                                                 //needs to be tied to the user id and the reaction id 
                                                                 //map over the reactions to check if they have been checked and update services with the new data
