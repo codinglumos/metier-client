@@ -28,16 +28,6 @@ export const AllServices = ({searchServicesState}) => {
 
     useEffect(
         () => {
-            getUsers()
-                .then((usersArray) => {
-                    setUsers(usersArray)
-                })
-        },
-        []
-    )
-
-    useEffect(
-        () => {
             getReactions()
                 .then((reactionsArray) => {
                     setReactions(reactionsArray)
