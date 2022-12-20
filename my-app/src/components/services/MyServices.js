@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getReactions } from "../../managers/ReactionManager"
 import { deleteService, getServices } from "../../managers/ServicesManager"
-import { getUsers } from "../../managers/UserManger"
+import { getCreatorUsers } from "../../managers/UserManger"
 import "./Services.css"
 
-export const MyServices = ({searchServicesState}) => {
+export const MyServices = () => {
 
     const [reactions, setReactions] = useState([])
     const navigate = useNavigate()
     const [filteredServices, setFilteredServices ] = useState ([])
     const localMetierUser = localStorage.getItem("metier_user")
     const metierUserObject = JSON.parse(localMetierUser)
-    const [user, setUsers] = useState([])
+    const [creators, setCreator] = useState([])
     const [allServices, setAllServices] = useState([])
 
     useEffect(
@@ -25,15 +25,12 @@ export const MyServices = ({searchServicesState}) => {
         []
     )
 
-    useEffect(
-        () => {
-            getUsers()
-                .then((usersArray) => {
-                    setUsers(usersArray)
-                })
-        },
+    useEffect(() => {
+        getCreatorUsers().then(creatorArray => setCreator(creatorArray))
+    },
         []
     )
+
 
     useEffect(
         () => {
@@ -46,7 +43,7 @@ export const MyServices = ({searchServicesState}) => {
 
     useEffect(
         () => {
-            const myServices = allServices.filter(allService => allService.user_id === metierUserObject.id)
+            const myServices = allServices.filter(allService => allService?.creator?.id === metierUserObject.id)
             setFilteredServices(myServices)
         },
         [allServices]
@@ -82,8 +79,7 @@ export const MyServices = ({searchServicesState}) => {
                                     <div className="creator has-text-left" key={`service--${filteredService.id}`}>Price: ${filteredService.price}</div>
                                     <div className="creator has-text-left" key={`service--${filteredService.id}`}>Date: {filteredService.publication_date}</div>
                                     <div className="creator has-text-left" key={`service--${filteredService.id}`}>Description: {filteredService.body}</div>
-                                    <div className="creator has-text-left" key={`service--${filteredService.id}`}>{filteredService.reactions}</div>
-                                    <div className="creator has-text-left" key={`service--${filteredService.id}`}>{filteredService.comment}</div>
+                                    {/* <div className="creator has-text-left" key={`service--${filteredService.id}`}>{filteredService.reactions}</div> */}
 
                                     <div className="edit_service">
                                     {
