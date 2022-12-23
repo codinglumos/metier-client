@@ -22,7 +22,7 @@ export const CustomerHome = () => {
         [customers]
     )
 
-    return (<>  <section>
+    return (<>  <section className="customerpage">
    {currentCustomer.length > 0 && <><img src={currentCustomer[0].profile_image}/> Welcome {currentCustomer[0].full_name}!</>}
   
    </section>

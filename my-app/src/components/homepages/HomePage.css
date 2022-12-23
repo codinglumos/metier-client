@@ -1,0 +1,13 @@
+.creatorpage, .customerpage {
+    padding: 0.7rem 10rem;
+    margin: 0.5rem 0;
+    color: #805D15;
+    font-family: "luminari";
+    line-height: 1.5;
+    font-size: larger;
+    background-color: #ECE8DB; 
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+    text-decoration: none;
+}

@@ -17,14 +17,12 @@ export const CreatorHome = () => {
 
     useEffect(() => {
         const filteredCreator = creators.filter(creator => parseInt(metierUserObject.id) === parseInt(creator.user))
-        console.log(filteredCreator, creators, metierUserObject)
        return setFiltered(filteredCreator)
     },
         [creators]
     )
-    console.log(currentCreator)
 
-    return (<>  <section>
+    return (<>  <section className="creatorpage">
    {currentCreator.length > 0 && <><img src={currentCreator[0].profile_image}/> Welcome {currentCreator[0].full_name}!</>}
   
    </section>

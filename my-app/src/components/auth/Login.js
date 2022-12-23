@@ -38,25 +38,25 @@ export const Login = () => {
                 <div>Username or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
-            <h1 className="metier-title-login">Metier: “Every artist was first an amateur.”  ―Ralph Waldo Emerson</h1> 
+            <h1 className="metier-title-login">“Every artist was first an amateur.”  ―Ralph Waldo Emerson</h1> 
 
             <section className="login-section">
                 <form className="form--login" onSubmit={handleLogin}>
               
-                    <h2 className="metier-signin-login">Please sign in</h2>
+                    <h2 className="metier-signin-login">Metier: A Virtual Gallary for All</h2>
 
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username </label>
+                        <label htmlFor="inputUsername" className="label--login"> Username </label>
                         <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <label htmlFor="inputPassword"> Password </label>
+                        <label htmlFor="inputPassword" className="label--login"> Password </label>
                         <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
                     </fieldset>
                     <fieldset style={{
                         textAlign: "center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        <button className="btn-login" type="submit">Sign In</button>
                     </fieldset>
                 </form>
             </section>

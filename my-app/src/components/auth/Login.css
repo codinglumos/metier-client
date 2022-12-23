@@ -34,11 +34,22 @@ fieldset {
 
 .form--login > fieldset > input {
     width: 25em;
+    display: flex;
+    justify-content: center;
+align-items: center;
 }
 
 .label--login {
     width: 8rem;
     display: inline-block;
+    color: black;
+    font-family: 'luminari';
+    display: flex;
+    justify-content: left;
+    font-size: 40px;
+    font-weight: 500;
+    text-shadow: 2px 3px #e0b55e;
+
 }
 
 .form-control {
@@ -95,7 +106,11 @@ fieldset {
     display: flex;
     justify-content: center;
     text-shadow: .1px 0px #cb9b51;
-    font-size: large;
+    font-size: 30px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 .metier-signin-login{
@@ -103,9 +118,11 @@ fieldset {
     font-family: 'luminari';
     display: flex;
     justify-content: left;
-    font-size: 30px;
-    font-weight: 500;
-    text-shadow: 2px 3px #cb9b51;
+    font-size: 70px;
+    font-weight: 200;
+    text-shadow: 2px 3px #e0b55e;
+    inline-size: 200;
+    background-color:#fff;
 }
 
 .metier-title-login{
@@ -114,7 +131,54 @@ fieldset {
     margin: 50px;
     float: left;
     font-size: 50px;
-    
+    text-shadow: 2px 3px #e0b55e;
+    margin: 20px, 30px;
+
 }
+
+.btn-login, .button--close {
+    height: 5rem;
+    width: 9rem;
+    padding: 0.2rem 0.5rem;
+    margin: 0.2rem;
+    border-radius: 1rem;
+    font-family: "luminari";
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #805D15;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 2rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-login:hover, .button--close:hover {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+  }
+  
+  .btn-login:focus, .button--close:focus {
+    box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+  }
 
 
