@@ -24,7 +24,7 @@ export const CreatorHome = () => {
 
     return (
         <>
-    <img className="metierlogo" src="https://i.postimg.cc/QCqm4C9n/M-tier-2.gif" />
+    <img className="metierlogo" src="https://i.postimg.cc/4dbNvVLr/M-tier-3.gif" />
 
           <section className="creatorpage">
             {currentCreator.length > 0 && (

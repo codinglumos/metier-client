@@ -125,7 +125,8 @@ export const AllServices = ({searchServicesState}) => {
                                     </div>
                                     <div className="edit_service">
                                     {
-                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.id)
+                                        metierUserObject.staff 
+                                        //&& parseInt(metierUserObject.id) === parseInt(service.creator.id)
                                       
                                             ? <button className="btn_edit-service-button" onClick={() => { serviceEdit(service) }}>Edit</button>
                                             //window.alert("Service has been updated.")
@@ -136,7 +137,8 @@ export const AllServices = ({searchServicesState}) => {
 
                                 <div className="delete_service">
                                     {
-                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.id)
+                                        metierUserObject.staff 
+                                        //&& parseInt(metierUserObject.id) === parseInt(service.creator.id)
                                             ? <button className="btn_delete-service-button" onClick={(evt) => { confirmDelete(evt, service) }}>Delete</button>
                                             : ""
                                             //window.alert("Service has been deleted.")

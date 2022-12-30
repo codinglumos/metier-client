@@ -23,7 +23,7 @@ export const CustomerHome = () => {
     )
 
     return (<> 
-    <img className="metierlogo" src="https://i.postimg.cc/QCqm4C9n/M-tier-2.gif"></img>
+    <img className="metierlogo" src="https://i.postimg.cc/4dbNvVLr/M-tier-3.gif"></img>
      <section className="customerpage">
    {currentCustomer.length > 0 && <><img className="homepageimg" src={currentCustomer[0].profile_image}/> Welcome Back {currentCustomer[0].full_name}!</>}
    </section>

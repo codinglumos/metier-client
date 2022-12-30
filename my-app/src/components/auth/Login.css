@@ -40,16 +40,17 @@ align-items: center;
 }
 
 .label--login {
-    width: 8rem;
+    width: 11rem;
     display: inline-block;
     color: black;
     font-family: 'luminari';
     display: flex;
     justify-content: left;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 500;
-    text-shadow: 2px 3px #e0b55e;
-
+    background-color: #fff;
+    background-blend-mode: lighten;
+    opacity: .65;
 }
 
 .form-control {
@@ -92,7 +93,7 @@ align-items: center;
 
 .login-section {
     font-family: 'luminari';
-    background-image: url(https://www.incimages.com/uploaded_files/image/1920x1080/getty_180955660_243351.jpg);
+    background-image: url(https://cutewallpaper.org/cdn-cgi/mirage/dd19f2d06ebc24f541f142b37b4289ffa7de722a7607e39984c5c6dd4ce8defd/1280/27x/24bcdn5hj/117922813.jpg);
     background-repeat:no-repeat;
     background-position: center;
     background-size: cover;
@@ -105,7 +106,6 @@ align-items: center;
     font-family: 'gotu';
     display: flex;
     justify-content: center;
-    text-shadow: .1px 0px #cb9b51;
     font-size: 30px;
     text-decoration: none;
     user-select: none;
@@ -120,20 +120,26 @@ align-items: center;
     justify-content: left;
     font-size: 70px;
     font-weight: 200;
-    text-shadow: 2px 3px #e0b55e;
     inline-size: 200;
-    background-color:#fff;
+    background-color: #fff;
+    background-blend-mode: lighten;
+    opacity: .65;
+    padding: 1px 30px 10px;
+    margin: -100px 50px 60px 50px
 }
 
 .metier-title-login{
     font-family: "gotu";
     inline-size: 250px;
     margin: 50px;
-    float: left;
+    float: right;
     font-size: 50px;
-    text-shadow: 2px 3px #e0b55e;
-    margin: 20px, 30px;
-
+    margin: 20px 30px;
+    color: black;
+    background-color: #fff;
+    background-blend-mode: lighten;
+    opacity: .65;
+    font-weight: bolder;
 }
 
 .btn-login, .button--close {
@@ -170,6 +176,7 @@ align-items: center;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  opacity: .75;
 }
 
 .btn-login:hover, .button--close:hover {

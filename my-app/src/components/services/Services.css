@@ -130,11 +130,13 @@
     border-radius: 1.25rem;
     float: center;
     background-color: #A6A938;   
+    -webkit-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .creator-image {
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 350px;
+  max-height: 350px;
 }
 
 .serviceDetails{

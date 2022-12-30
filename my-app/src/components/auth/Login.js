@@ -42,7 +42,7 @@ export const Login = () => {
             <section className="login-section">
                 <form className="form--login" onSubmit={handleLogin}>
               
-                    <h2 className="metier-signin-login">Metier: A Virtual Gallary for All</h2>
+                    <h2 className="metier-signin-login">Metier: A Virtual Gallery for All</h2>
 
                     <fieldset>
                         <label htmlFor="inputUsername" className="label--login"> Username </label>
