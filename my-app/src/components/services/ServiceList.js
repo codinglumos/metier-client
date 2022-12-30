@@ -25,8 +25,6 @@ export const AllServices = ({searchServicesState}) => {
         []
     )
 
-
-
     useEffect(
         () => {
             getReactions()
@@ -35,7 +33,7 @@ export const AllServices = ({searchServicesState}) => {
                 })
         }, []
     )
-//need to make this filter by creator
+    
     useEffect(
         () => {
             const searchedServices = services.filter(service => 
@@ -65,7 +63,7 @@ export const AllServices = ({searchServicesState}) => {
     
     return <article className="services">
         <h2 className="servicesHeader-title-is-3">Metier Featured Artwork</h2>
-
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {
             servicesToPrint.map(
             (service) => {
@@ -79,7 +77,7 @@ export const AllServices = ({searchServicesState}) => {
                                     <div className="creator has-text-left" key={`service--${service.id}`}>Created By: <Link className="creatorlink" to={`/creators/${service.creator.id}`}>{service.creator.full_name}</Link></div>
                                     <div className="creator has-text-left" key={`service--${service.id}`}>Price: ${service.price}</div>
                                     <div className="creator has-text-left" key={`service--${service.id}`}>Date: {service.publication_date}</div>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>{service.reactions}</div>
+                                    {/* <div className="creator has-text-left" key={`service--${service.id}`}>{service.reactions}</div> */}
                                     <div className="reactions">
                                     {
                                         !metierUserObject.staff
@@ -141,6 +139,7 @@ export const AllServices = ({searchServicesState}) => {
                                         metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.id)
                                             ? <button className="btn_delete-service-button" onClick={(evt) => { confirmDelete(evt, service) }}>Delete</button>
                                             : ""
+                                            //window.alert("Service has been deleted.")
 
                                     }
                                 </div>
@@ -155,6 +154,7 @@ export const AllServices = ({searchServicesState}) => {
 
             )
         }
+        </div>
     </article >
 }
 

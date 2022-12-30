@@ -90,7 +90,7 @@ export const UpdateService = () => {
                 .then(() => navigate("/services"))
             }}
             className="btn btn-primary">
-                Update Service
+                Update Artwork
             </button>
         </form>
     )

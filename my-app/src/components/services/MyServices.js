@@ -31,7 +31,6 @@ export const MyServices = () => {
         []
     )
 
-
     useEffect(
         () => {
             getReactions()
@@ -50,14 +49,14 @@ export const MyServices = () => {
     )
       
     const confirmDelete = (service) => {
-        let text = 'Are you sure you want to delete this service?'
+        let text = 'Are you sure you want to delete this art piece?'
         window.confirm(text)
             ? deleteService(service.id).then(() => {window.location.reload()})
             : <></>
     }
 
     const serviceEdit = (service) => {
-        let text = 'Are you sure you want to edit this service?'
+        let text = 'Are you sure you want to edit this art piece?'
         window.confirm(text)
             ? navigate(`/services/${service.id}/edit`)
             : <></>
@@ -65,7 +64,7 @@ export const MyServices = () => {
     
     return <article className="services">
         <h2 className="servicesHeader-title-is-3">My Artwork</h2>
-
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {
             filteredServices.map(
             (filteredService) => {
@@ -110,5 +109,6 @@ export const MyServices = () => {
 
             )
         }
+        </div>
     </article >
 }

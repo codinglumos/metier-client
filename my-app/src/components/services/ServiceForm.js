@@ -120,7 +120,7 @@ export const ServiceForm = () => {
 
 
             <button onClick={changeServiceState} className="btn btn-primary">
-                Submit Service
+                Submit Artwork
             </button>
         </form>
     )

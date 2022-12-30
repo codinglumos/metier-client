@@ -1,0 +1,16 @@
+.creatorDetails{
+  margin: 1rem 30rem 30rem;
+  height: 50rem;
+  width: 40rem;
+  padding: 3rem 5rem 10rem 5rem;
+  text-align: center;
+  border: 0.1rem solid white;
+  border-radius: 1.25rem;
+  float: center;
+  background-color:#805D15;
+  font-family: "gotu";
+  color: white;
+  font-size: 25px;
+  margin-bottom: 50rem;
+}
+
