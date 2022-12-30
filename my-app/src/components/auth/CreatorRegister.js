@@ -91,7 +91,7 @@ export const CreatorRegister = () => {
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                    <button className="btn-login" type="submit">Register</button>
                 </fieldset>
             </form>
             <section className="link--register">

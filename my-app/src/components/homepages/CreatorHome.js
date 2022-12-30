@@ -17,17 +17,23 @@ export const CreatorHome = () => {
 
     useEffect(() => {
         const filteredCreator = creators.filter(creator => parseInt(metierUserObject.id) === parseInt(creator.user))
-        console.log(filteredCreator, creators, metierUserObject)
        return setFiltered(filteredCreator)
     },
         [creators]
     )
-    console.log(currentCreator)
 
-    return (<>  <section>
-   {currentCreator.length > 0 && <><img src={currentCreator[0].profile_image}/> Welcome {currentCreator[0].full_name}!</>}
-  
-   </section>
-     </>
-    )
+    return (
+        <>
+    <img className="metierlogo" src="https://i.postimg.cc/4dbNvVLr/M-tier-3.gif" />
+
+          <section className="creatorpage">
+            {currentCreator.length > 0 && (
+              <>
+                <img className="homepageimg" src={currentCreator[0].profile_image} />
+                Welcome Back {currentCreator[0].full_name}!
+              </>
+            )}
+          </section>
+        </>
+      );
 }

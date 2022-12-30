@@ -35,7 +35,7 @@ export const UpdateService = () => {
         <h2 className="serviceForm__service"></h2>
         <fieldset>
             <div className="form-group">
-                <label htmlFor="service">Update Service: </label>
+                <label htmlFor="service">Update Artwork Title: </label>
                 <input type="text" id="service" required autoFocus className="form-control"
                     value={newService.service}
                     onChange={changeServiceState}
@@ -65,7 +65,7 @@ export const UpdateService = () => {
 
                 <fieldset>
                 <div className="form-group">
-                    <label htmlFor="body">Update information about your service here... </label>
+                    <label htmlFor="body">Update information about your artwork here... </label>
                     <input key={`service--${newService.body}`} type="text" id="body" required autoFocus className="form-control"
                         value={newService.body}
                         onChange={changeServiceState}
@@ -90,7 +90,7 @@ export const UpdateService = () => {
                 .then(() => navigate("/services"))
             }}
             className="btn btn-primary">
-                Update Service
+                Update Artwork
             </button>
         </form>
     )
