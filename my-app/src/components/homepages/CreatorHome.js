@@ -31,9 +31,10 @@ export const CreatorHome = () => {
               <>
                 <img className="homepageimg" src={currentCreator[0].profile_image} />
                 Welcome Back {currentCreator[0].full_name}!
-              </>
+              </>                     
             )}
           </section>
         </>
+
       );
 }

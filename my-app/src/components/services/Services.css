@@ -30,6 +30,10 @@
     font-size: larger;
 }
 
+.servicelink, .creatorlink{
+  text-decoration: none; 
+}
+
 .btn_delete-service-button, .btn_edit-service-button, .btn-primary {
     height: 5rem;
     width: 7rem;

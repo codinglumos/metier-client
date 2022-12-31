@@ -27,6 +27,7 @@ export const CustomerHome = () => {
      <section className="customerpage">
    {currentCustomer.length > 0 && <><img className="homepageimg" src={currentCustomer[0].profile_image}/> Welcome Back {currentCustomer[0].full_name}!</>}
    </section>
+
      </>
     )
 }
