@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getReactions } from "../../managers/ReactionManager"
-import { deleteService, getServices } from "../../managers/ServicesManager"
+import { deleteService, getServices, getServicesForCreator } from "../../managers/ServicesManager"
 import { getCreatorUsers } from "../../managers/UserManger"
 import "./Services.css"
 
@@ -9,11 +9,21 @@ export const MyServices = () => {
 
     const [reactions, setReactions] = useState([])
     const navigate = useNavigate()
-    const [filteredServices, setFilteredServices ] = useState ([])
+   // const [filteredServices, setFilteredServices ] = useState ([])
     const localMetierUser = localStorage.getItem("metier_user")
     const metierUserObject = JSON.parse(localMetierUser)
     const [creators, setCreator] = useState([])
     const [allServices, setAllServices] = useState([])
+    const [serviceByCreators, setServicesByCreator] = useState([])
+
+    useEffect(() => {
+        getServicesForCreator()
+            .then((servicesBycreator) => {
+                setServicesByCreator(servicesBycreator)
+            })
+    },
+    []
+    )
 
     useEffect(
         () => {
@@ -40,13 +50,13 @@ export const MyServices = () => {
         }, []
     )
 
-    useEffect(
-        () => {
-            const myServices = allServices.filter(allService => allService?.creator?.id === metierUserObject.id)
-            setFilteredServices(myServices)
-        },
-        [allServices]
-    )
+    // useEffect(
+    //     () => {
+    //         const myServices = allServices.filter(allService => allService?.creator?.id === metierUserObject.id)
+    //         setFilteredServices(myServices)
+    //     },
+    //     [allServices]
+    // )
       
     const confirmDelete = (service) => {
         let text = 'Are you sure you want to delete this art piece?'
@@ -66,7 +76,7 @@ export const MyServices = () => {
         <h2 className="servicesHeader-title-is-3">My Artwork</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {
-            filteredServices.map(
+            serviceByCreators.map(
             (filteredService) => {
               
                         return <section key={`services--${filteredService.id}`} className="service-container">

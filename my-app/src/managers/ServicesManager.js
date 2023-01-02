@@ -20,6 +20,16 @@ export const getServiceById = (id) => {
     .then(response => response.json())
 }
 
+export const getServicesForCreator = () => {
+    return fetch("http://localhost:8000/services?myServices", {
+        headers:{
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`
+        }
+    })
+    .then(response => response.json())
+}
 
 export const deleteService = (id) => {
     return fetch(`http://localhost:8000/services/${id}`, {

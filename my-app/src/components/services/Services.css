@@ -93,9 +93,10 @@
 }
 
 .search {
-    background-color: #805D15;
+    background-image: url(https://www.insidehook.com/wp-content/uploads/2016/10/whereeveryougothereyouare-1.gif?resize=566%2C500);
     padding:13px;
-    width:335px;
+    width:300px;
+    height:90px;
     margin:10px auto;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
@@ -149,25 +150,16 @@
   padding-top: 100px;
 }
 
-/*
---COLOR PALLETE--
-Blues:
-423075
-14063A
-281758
-625192
-897BAF
+html::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
 
-Greenish:
-A6A938
-FCFEA9
-D2D36A
-7C7F15
-525500
+html::-webkit-scrollbar-track {
+  background: #553A00;        /* color of the tracking area */
+}
 
-Goldish:
-AA8639
-FFE4AA
-805D15
-553A00
-*/
+html::-webkit-scrollbar-thumb {
+  background-color: #A6A938;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid #553A00;  /* creates padding around scroll thumb */
+}

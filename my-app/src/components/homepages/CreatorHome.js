@@ -30,7 +30,8 @@ export const CreatorHome = () => {
             {currentCreator.length > 0 && (
               <>
                 <img className="homepageimg" src={currentCreator[0].profile_image} />
-                Welcome Back {currentCreator[0].full_name}!
+               <div className="welcomepage"> Welcome Back {currentCreator[0].full_name}!</div>
+
               </>                     
             )}
           </section>
