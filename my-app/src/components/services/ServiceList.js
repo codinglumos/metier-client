@@ -74,9 +74,9 @@ export const AllServices = ({searchServicesState}) => {
                                     <Link className="servicelink" to={`/services/${service.id}`} > {service.service}</Link>
                                     </div>
                                     <img src={service.image} className="creator-image" key={`service--${service.image}`}/>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Created By: <Link className="creatorlink" to={`/creators/${service.creator.id}`}>{service.creator.full_name}</Link></div>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Price: ${service.price}</div>
-                                    <div className="creator has-text-left" key={`service--${service.id}`}>Date: {service.publication_date}</div>
+                                    <div className="creator has-text-left" key={`service--${service.creator}`}>Created By: <Link className="creatorlink" to={`/creators/${service.creator.id}`}>{service.creator.full_name}</Link></div>
+                                    <div className="creator has-text-left" key={`service--${service.price}`}>Price: ${service.price}</div>
+                                    <div className="creator has-text-left" key={`service--${service.publication_date}`}>Date: {service.publication_date}</div>
                                     {/* <div className="creator has-text-left" key={`service--${service.id}`}>{service.reactions}</div> */}
                                     <div className="reactions">
                                     {
@@ -125,8 +125,7 @@ export const AllServices = ({searchServicesState}) => {
                                     </div>
                                     <div className="edit_service">
                                     {
-                                       metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.id)
-                                       //&& parseInt(metierUserObject.id) === parseInt(service.creator.id) 
+                                       metierUserObject.staff && metierUserObject.username === service?.creator?.user?.username
                                       
                                             ? <button className="btn_edit-service-button" onClick={() => { serviceEdit(service) }}>Edit</button>
                                             : <></>
@@ -136,8 +135,7 @@ export const AllServices = ({searchServicesState}) => {
 
                                 <div className="delete_service">
                                     {
-                                        metierUserObject.staff && parseInt(metierUserObject.id) === parseInt(service.creator.id)
-                                        //&& parseInt(metierUserObject.id) === parseInt(service.creator.user)
+                                       metierUserObject.staff && metierUserObject.username === service?.creator?.user?.username
                                             ? <button className="btn_delete-service-button" onClick={(evt) => { confirmDelete(evt, service) }}>Delete</button>
                                             : ""
 
