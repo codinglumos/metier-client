@@ -78,10 +78,10 @@ export const MyServices = () => {
                                 <div className="serviceDetails-column">
                                     <div className="service" key={`service--${filteredService.service}`}>Artwork Title: {filteredService.service}</div>
                                     <img src={filteredService.image} className="creator-image" key={`service--${filteredService.image}`}/>
-                                    <div className="creator has-text-left" key={`service--${filteredService.creator}`}>Created By: {filteredService.creator.full_name}</div>
-                                    <div className="creator has-text-left" key={`service--${filteredService.price}`}>Price: ${filteredService.price}</div>
-                                    <div className="creator has-text-left" key={`service--${filteredService.publication_date}`}>Date: {filteredService.publication_date}</div>
-                                    <div className="creator has-text-left" key={`service--${filteredService.body}`}>Description: {filteredService.body}</div>
+                                    <div className="creator has-text-left">Created By: {filteredService.creator.full_name}</div>
+                                    <div className="creator has-text-left">Price: ${filteredService.price}</div>
+                                    <div className="creator has-text-left">Date: {filteredService.publication_date}</div>
+                                    <div className="creator has-text-left">Description: {filteredService.body}</div>
                                     {/* <div className="creator has-text-left" key={`service--${filteredService.id}`}>{filteredService.reactions}</div> */}
 
                                     <div className="edit_service">
