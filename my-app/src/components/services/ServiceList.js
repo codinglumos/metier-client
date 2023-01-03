@@ -13,7 +13,7 @@ export const AllServices = ({searchServicesState}) => {
     const [filteredServices, setFiltered ] = useState ([])
     const localMetierUser = localStorage.getItem("metier_user")
     const metierUserObject = JSON.parse(localMetierUser)
-    const [checkedReaction, setCheckedReactions] = useState(new Set())
+    const [checkedReaction, setCheckedReactions] = useState({})
 
     useEffect(
         () => {
@@ -79,59 +79,94 @@ export const AllServices = ({searchServicesState}) => {
                                     <div className="creator has-text-left">Date: {service.publication_date}</div>
                                     {/* <div className="creator has-text-left" key={`service--${service.id}`}>{service.reactions}</div> */}
                                     <div className="reactions">
-                                    {
-                                        !metierUserObject.staff
-                                            ? <fieldset>
-                                            <div className="form-group">
-                                                <label htmlFor="reaction"></label>
-                                                {
-                                                    reactions.map((reaction) =>{
-                                                        return<>
-                                                        <option className="reactions" value={`${reaction.id}`} key={`reaction--${reaction.id}`}>{reaction.reaction}</option>
-                                                        <input
-                                                            type="checkbox"
-                                                            className="addReaction"
-                                                            value={service.reaction}
-                                                            onChange={
-                                                                () => {
-                                                                    const copy = new Set(checkedReaction)
-                                                                    if(copy.has(reaction.id)){
-                                                                        copy.delete(reaction.id)
-                                                                    } else {
-                                                                        copy.add(reaction.id)
-                                                                    }
-                                                                    setCheckedReactions(copy)
-                                                                    service.reactions = [...service.reactions, {
-                                                                        reaction: parseInt(reaction.id),
-                                                                        customer: parseInt(metierUserObject.id)
-                                                                    }]
-                                                                    updateService(service)
-                                                                }
-                                                                //needs to be tied to the user id and the reaction id 
-                                                                //map over the reactions to check if they have been checked and update services with the new data
-                                                                //make a statment for everyone to see emojis counted for each post
-                                                                //onchange- determine if checked- post to create or unchecked- post to delete
-                                                            }
-                                                            />
-                                                        </>
+                {
+                    !metierUserObject.staff
+                        ? <fieldset>
+                        <div className="reaction-container">
+                            <label htmlFor="reaction"></label>
+                            {
+                                reactions.map((reaction) =>{
+                                    return<>
+                                    <option className="reactions" value={`${reaction.id}`} key={`reaction--${reaction.id}`}>{reaction.reaction}</option>
+                                    <input
+                                        type="checkbox"
+                                        className="addReaction"
+                                        value={service.reaction}
+
+                                        onChange={
+                                            () => {
+                                                const copy = {...checkedReaction}
+                                                
+                                                if(service.id in copy){
+                                                    if(copy[service.id].has(reaction.id)){
+                                                        
+                                                        copy[service.id].delete(reaction.id)
+                                                    } else {
+                                                        copy[service.id].add(reaction.id)
                                                     }
-                                                    )
                                                 }
-                                            </div>
-                                        </fieldset>
-                                            : <></>
+                                                else{
+                                                    copy[service.id] = new Set([reaction.id])
+                                                }
+                                                setCheckedReactions(copy)
 
-                                    }
-                                    </div>
-                                    <div className="edit_service">
-                                    {
-                                       metierUserObject.staff && metierUserObject.username === service?.creator?.user?.username
-                                      
-                                            ? <button className="btn_edit-service-button" onClick={() => { serviceEdit(service) }}>Edit</button>
-                                            : <></>
+                                                /**
+                                                    {
+                                                    2: Set(4),
+                                                    6: Set(1, 4)
+                                                    }
 
-                                    }
-                                </div>
+                                                    http://localhost:8000/services/10?reaction=2
+                                                    fetch- I will want to get services by id first 
+                                                    and then services?reaction reactions by id
+
+                                                    */
+
+                                                service.reactions = [...service.reactions, {
+                                                    reaction: parseInt(reaction.id),
+                                                    customer: parseInt(metierUserObject.id)
+                                                }]
+                                                updateService(service)
+                                            }
+                                            //needs to be tied to the user id and the reaction id 
+                                            //map over the reactions to check if they have been checked and update services with the new data
+                                            //make a statment for everyone to see emojis counted for each post
+                                            //onchange- determine if checked- post to create or unchecked- post to delete
+                                            // defaultChecked={
+                                            //     assignedMusic.has(music.id)
+                                            // }
+                                            // checked={
+                                            //     assignedMusic.has(music.id)
+                                            // }
+                                            // onChange={(evt) => {
+                                            //     const copy = new Set(assignedMusic)
+                                            //     if(copy.has(music.id)){
+                                            //         copy.delete(music.id)
+                                            //     } else {
+                                            //         copy.add(music.id)
+                                            //     }
+                                            //     setAssignedMusic(copy)
+                                        }
+                                        />
+                                    </>
+                                }
+                                )
+                            }
+                        </div>
+                    </fieldset>
+                        : <></>
+
+                    }
+                    </div>
+                    <div className="edit_service">
+                    {
+                        metierUserObject.staff && metierUserObject.username === service?.creator?.user?.username
+                        
+                            ? <button className="btn_edit-service-button" onClick={() => { serviceEdit(service) }}>Edit</button>
+                            : <></>
+
+                    }
+                </div>
 
                                 <div className="delete_service">
                                     {
