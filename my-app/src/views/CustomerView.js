@@ -14,9 +14,7 @@ export const CustomerViews = () => {
         <Route path="/" element={< AllServices  />} />
         <Route path="/creators/:creatorId" element={<CreatorDetails />} />
         <Route path="/homepages" element={< HomePages/>} />
-
-      
-  
+        
       </Routes>
   </>
 }

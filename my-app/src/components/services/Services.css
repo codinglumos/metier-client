@@ -152,15 +152,27 @@
 }
 
 html::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
+  width: 12px;            
 }
 
 html::-webkit-scrollbar-track {
-  background: #553A00;        /* color of the tracking area */
+  background: #553A00;        
 }
 
 html::-webkit-scrollbar-thumb {
-  background-color: #A6A938;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid #553A00;  /* creates padding around scroll thumb */
+  background-color: #A6A938;    
+  border-radius: 20px;       
+  border: 3px solid #553A00;  
 }
+
+.addReaction {
+  width: 15px;
+  height: 15px;
+}
+
+.reaction-container{
+  flex-wrap: wrap;
+  padding-bottom: 5px;
+  margin: 10px;
+}
+

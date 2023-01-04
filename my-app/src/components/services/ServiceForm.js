@@ -6,8 +6,6 @@ import { createService, getUsers, getServices } from '../../managers/ServicesMan
 export const ServiceForm = () => {
     const navigate = useNavigate()
     const [services, setServices] = useState([])
-    //const [serviceTypes, setServiceTypes] = useState([])
-    //const [users, setUsers] = useState([])
    
     const [newService, setNewService] = useState({
         service: "",

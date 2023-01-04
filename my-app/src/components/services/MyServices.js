@@ -61,7 +61,6 @@ export const MyServices = () => {
         let text = 'Are you sure you want to edit this art piece?'
         window.confirm(text)
             ? navigate(`/services/${service.id}/edit`)
-            //.then(() => {window.location.href = '/myServices'})
             : <></>
         
     }

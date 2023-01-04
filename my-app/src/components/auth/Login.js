@@ -21,7 +21,6 @@ export const Login = () => {
                     localStorage.setItem("metier_user", JSON.stringify(res))
                     localStorage.setItem("is_staff", JSON.stringify(res.staff))
 
-                    //nav to home when it is made!!
                     navigate("/homepages")
                 }
                 

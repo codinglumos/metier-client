@@ -35,11 +35,9 @@ export const CreatorRegister = () => {
                     if ("valid" in res && res.valid && "token" in res) {
                         localStorage.setItem("metier_user", JSON.stringify(res))
                         localStorage.setItem("is_staff", JSON.stringify(res.staff))
-
-                     //nav to home when it is made!!
                         
                     }
-                    navigate("/services")
+                    navigate("/homepages")
                 })
         } else {
             passwordDialog.current.showModal()

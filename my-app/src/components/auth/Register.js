@@ -32,10 +32,9 @@ export const Register = () => {
                 .then(res => {
                   if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("metier_user", JSON.stringify(res))
-                    //nav to home when it is made!!
                        
                     }
-                    navigate("/services")
+                    navigate("/homepages")
                 })
         } else {
             passwordDialog.current.showModal()
