@@ -22,7 +22,7 @@ export const Login = () => {
                     localStorage.setItem("is_staff", JSON.stringify(res.staff))
 
                     //nav to home when it is made!!
-                    navigate("/services")
+                    navigate("/homepages")
                 }
                 
                 else {

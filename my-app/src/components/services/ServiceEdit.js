@@ -87,7 +87,7 @@ export const UpdateService = () => {
              }
                 
                 updateService(serviceDone)
-                .then(() => navigate("/services"))
+                .then(() => navigate("/myServices"))
             }}
             className="btn btn-primary">
                 Update Artwork

@@ -29,7 +29,7 @@ export const NavBar = () => {
                                 { (localStorage.getItem("metier_user") !== null && metierUserObject.staff) ?
                                    <><div className="navbar-item">
                                    <div className="navbar__item">
-                                       <Link className="navbar__item" to="/creatorHome"> Metier Homepage</Link>
+                                       <Link className="navbar__item" to="/homepages"> Metier Homepage</Link>
                                    </div>
                                   </div> 
                                   <div className="navbar-item">
@@ -58,7 +58,7 @@ export const NavBar = () => {
                                    <> 
                                    <div className="navbar-item">
                                    <div className="navbar__item">
-                                       <Link className="navbar__item" to="/memberHome"> Metier Member Homepage</Link>
+                                       <Link className="navbar__item" to="/homepages"> Metier Member Homepage</Link>
                                    </div>
                                   </div> 
 

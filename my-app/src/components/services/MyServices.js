@@ -73,44 +73,44 @@ export const MyServices = () => {
             serviceByCreators.map(
             (filteredService) => {
               
-                        return <section key={`services--${filteredService.id}`} className="service-container">
-                            <div className="service-boxes" id="services">
-                                <div className="serviceDetails-column">
-                                    <div className="service" key={`service--${filteredService.service}`}>Artwork Title: {filteredService.service}</div>
-                                    <img src={filteredService.image} className="creator-image" key={`service--${filteredService.image}`}/>
-                                    <div className="creator has-text-left">Created By: {filteredService.creator.full_name}</div>
-                                    <div className="creator has-text-left">Price: ${filteredService.price}</div>
-                                    <div className="creator has-text-left">Date: {filteredService.publication_date}</div>
-                                    <div className="creator has-text-left">Description: {filteredService.body}</div>
-                                    {/* <div className="creator has-text-left" key={`service--${filteredService.id}`}>{filteredService.reactions}</div> */}
+        return <section key={`services--${filteredService.id}`} className="service-container">
+            <div className="service-boxes" id="services">
+                <div className="serviceDetails-column">
+                    <div className="service" key={`service--${filteredService.service}`}>Artwork Title: {filteredService.service}</div>
+                    <img src={filteredService.image} className="creator-image" key={`service--${filteredService.image}`}/>
+                    <div className="creator has-text-left">Created By: {filteredService.creator.full_name}</div>
+                    <div className="creator has-text-left">Price: ${filteredService.price}</div>
+                    <div className="creator has-text-left">Date: {filteredService.publication_date}</div>
+                    <div className="creator has-text-left">Description: {filteredService.body}</div>
+                    {/* <div className="creator has-text-left" key={`service--${filteredService.id}`}>{filteredService.reactions}</div> */}
 
-                                    <div className="edit_service">
-                                    {
-                                        metierUserObject.staff && metierUserObject.username === filteredService.creator.user.username
-                                      
-                                            ? <button className="btn_edit-service-button"  onClick={() => {
-                                                serviceEdit(filteredService)}}>Edit</button>
-                                            : <></>
+                    <div className="edit_service">
+                    {
+                        metierUserObject.staff && metierUserObject.username === filteredService.creator.user.username
+                        
+                            ? <button className="btn_edit-service-button"  onClick={() => {
+                                serviceEdit(filteredService)}}>Edit</button>
+                            : <></>
 
-                                    }
-                                </div>
+                    }
+                </div>
 
-                                <div className="delete_service">
-                                    {
-                                        metierUserObject.staff && metierUserObject.username === filteredService.creator.user.username
-                                            ? <button className="btn_delete-service-button" onClick={() => { 
-                                                confirmDelete(filteredService) }}>Delete</button>
-                                            : <></>
+                <div className="delete_service">
+                    {
+                        metierUserObject.staff && metierUserObject.username === filteredService.creator.user.username
+                            ? <button className="btn_delete-service-button" onClick={() => { 
+                                confirmDelete(filteredService) }} >Delete</button>
+                            : <></>
 
-                                    }
-                                </div>
-                                </div>
-                             
+                    }
+                </div>
+                </div>
+                
 
-                                
-                            </div>
+                
+            </div>
 
-                        </section>
+        </section>
                 }
 
             )
