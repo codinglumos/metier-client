@@ -124,8 +124,14 @@
     display: inline;
     font-size: 15px;
     flex-wrap: nowrap;
+    cursor:pointer;
 }
 
+.unclickedReaction{
+  color:transparent; 
+  text-shadow: 0 0 0 grey;
+
+}
 .serviceForm {
     margin: 2rem 40rem 20rem;
     height: 50rem;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getReactions } from "../../managers/ReactionManager"
-import { addReaction, deleteService, getServices, updateService } from "../../managers/ServicesManager"
+import { addReaction, deleteReaction, deleteService, getServices, updateService } from "../../managers/ServicesManager"
 import "./Services.css"
 
 export const AllServices = ({searchServicesState}) => {
@@ -85,66 +85,32 @@ export const AllServices = ({searchServicesState}) => {
                             <label htmlFor="reaction"></label>
                             {
                                 reactions.map((reaction) =>{
-                        return<>
-                        <input
-                            type="checkbox"
-                            className="addReaction"
-                            value={service.reaction}
-                            onChange={
-                                () => {
+
+    const clickedByUser = service.reactions.filter(react => react.id === reaction.id).length > 0
+
+                        return<>        
+                        <div className={`reactions ${clickedByUser ? "unclickedReaction" :""}`} onClick={() => {
                                     const copy = {...checkedReaction}
-                                    console.log(copy)
-                                    if(service.id in copy){
+                                    if(clickedByUser){
+                                        deleteReaction(service.id, reaction.id).then(() => {window.location.reload()})
+                                    }
+                                    else if(service.id in copy){
                                         if(copy[service.id].has(reaction.id)){
                                             
                                             copy[service.id].delete(reaction.id)
-                                            console.log(service.id)
                                         } else {
                                             copy[service.id].add(reaction.id)
-                                            //addReaction(service.id, reaction.id)
+                                            addReaction(service.id, reaction.id).then(() => {window.location.reload()})
                                         }
                                     }
                                     else{
                                         copy[service.id] = new Set([reaction.id])
-                                        //addReaction(service.id, reaction.id)
+                                        addReaction(service.id, reaction.id).then(() => {window.location.reload()})
 
                                     }
                                     setCheckedReactions(copy)
-
-                                    /*
-                                        {
-                                        2: Set(4),
-                                        6: Set(1, 4)
-                                        }
-
-                                        http://localhost:8000/services/10?reaction=2
-                                        fetch- I will get services by id first 
-                                        and then services?reaction reactions add id
-
-                                        export const addReaction = (serviceId, reactionId) => {
-                                        return fetch(`http://localhost:8000/services/${serviceId}?reaction=${reactionId}`, {
-                                            method: "POST",
-                                            headers: {
-                                                "Accept": "application/json",
-                                                "Content-Type": "application/json",
-                                                "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`
-                                            },
-                                            body: JSON.stringify(serviceId, reactionId)
-})
-}
-                                        
-                                        
-                                        */
-
-                                    // service.reactions = [...service.reactions, {
-                                    //     reaction: parseInt(reaction.id),
-                                    //     customer: parseInt(metierUserObject.id)
-                                    // }]
-                                    // updateService(service)
-                                }
-                            }
-                            />
-                        <option className="reactions" value={`${reaction.id}`} key={`reaction--${reaction.id}`}>{reaction.reaction}</option>
+                                    
+                        }}>{reaction.reaction}</div>
 
                         </>
                     }

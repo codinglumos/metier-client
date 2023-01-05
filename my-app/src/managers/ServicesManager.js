@@ -67,26 +67,24 @@ export const createService = (service) => {
 }
 
 export const addReaction = (serviceId, reactionId) => {
-    return fetch(`http://localhost:8000/services/${serviceId}?reaction=${reactionId}`, {
+    return fetch(`http://localhost:8000/services/${serviceId}/reaction?reaction=${reactionId}`, {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
             "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`
-        },
-        body: JSON.stringify(serviceId, reactionId)
-})
+        }
+    });
 }
 
-//http://localhost:8000/services/10?reaction=2
-// export const joinEvent = eventId => {
-//     return fetch(`http://localhost:8000/events${eventId}`, {
-//       method: "POST",
-//       headers: {
-//           "Accept": "application/json",
-//           "Content-Type": "application/json",
-//           "Authorization": `Token ${localStorage.getItem("lu_token")}`
-//       },
-//       body: JSON.stringify(eventId)
-//   })
-// }
+export const deleteReaction = (serviceId, reactionId) => {
+    return fetch(`http://localhost:8000/services/${serviceId}/reaction?reaction=${reactionId}`, {
+        method: "DELETE",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Token ${JSON.parse(localStorage.getItem("metier_user")).token}`
+        }
+    });
+    
+}
