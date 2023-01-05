@@ -122,14 +122,14 @@
 
 .reactions{
     display: inline;
-    font-size: 15px;
+    font-size: 20px;
     flex-wrap: nowrap;
     cursor:pointer;
 }
 
 .unclickedReaction{
   color:transparent; 
-  text-shadow: 0 0 0 grey;
+  text-shadow: 0 0 0 #A6A938;
 
 }
 .serviceForm {

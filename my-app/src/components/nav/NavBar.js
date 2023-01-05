@@ -45,9 +45,14 @@ export const NavBar = () => {
                         <div className="navbar-item">
                             <div className="navbar__item">
                                 <Link className="navbar__item" to="/myServices">My Artwork</Link>
-                            </div>
-                            
+                            </div>   
                         </div>
+
+                        <div className="navbar-item">
+                        <div className="navbar__item">
+                            <Link className="navbar__item" to="/metiercreators"> Metier Artists</Link>
+                        </div>
+                        </div> 
                         
                         </>
                         : <></>}
@@ -65,6 +70,12 @@ export const NavBar = () => {
                                 <Link className="navbar__item" to="/services"> Metier Artwork</Link>
                             </div>
                         </div>
+
+                        <div className="navbar-item">
+                        <div className="navbar__item">
+                            <Link className="navbar__item" to="/metiercreators"> Metier Artists</Link>
+                        </div>
+                        </div> 
                             
                         </>
                         : <></>}

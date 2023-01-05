@@ -4,6 +4,7 @@ import { HomePages } from "../components/homepages/HomePages"
 import { ServiceContainer } from "../components/services/ServiceContainer"
 import { ServiceDetails } from "../components/services/ServiceDetails"
 import { AllServices } from "../components/services/ServiceList"
+import { CreatorContainer } from "../components/creators/CreatorContainer"
 
 export const CustomerViews = () => {
   return <>
@@ -14,7 +15,8 @@ export const CustomerViews = () => {
         <Route path="/" element={< AllServices  />} />
         <Route path="/creators/:creatorId" element={<CreatorDetails />} />
         <Route path="/homepages" element={< HomePages/>} />
-        
+        <Route path="/metiercreators" element={<CreatorContainer />} />
+
       </Routes>
   </>
 }

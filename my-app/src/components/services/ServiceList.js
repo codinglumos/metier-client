@@ -76,7 +76,6 @@ export const AllServices = ({searchServicesState}) => {
                                     <div className="creator has-text-left">Created By: <Link className="creatorlink" to={`/creators/${service.creator.id}`}>{service.creator.full_name}</Link></div>
                                     <div className="creator has-text-left">Price: ${service.price}</div>
                                     <div className="creator has-text-left">Date: {service.publication_date}</div>
-                                    {/* <div className="creator has-text-left" key={`service--${service.id}`}>{service.reactions}</div> */}
             <div className="reactions">
                 {
                     !metierUserObject.staff

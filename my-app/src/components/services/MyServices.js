@@ -81,7 +81,6 @@ export const MyServices = () => {
                     <div className="creator has-text-left">Price: ${filteredService.price}</div>
                     <div className="creator has-text-left">Date: {filteredService.publication_date}</div>
                     <div className="creator has-text-left">Description: {filteredService.body}</div>
-                    {/* <div className="creator has-text-left" key={`service--${filteredService.id}`}>{filteredService.reactions}</div> */}
 
                     <div className="edit_service">
                     {

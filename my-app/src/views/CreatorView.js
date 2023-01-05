@@ -6,6 +6,7 @@ import { MyServices } from "../components/services/MyServices"
 import { ServiceDetails } from "../components/services/ServiceDetails"
 import { CreatorDetails } from "../components/creators/CreatorDetails"
 import { HomePages } from "../components/homepages/HomePages"
+import { CreatorContainer } from "../components/creators/CreatorContainer"
 
 export const CreatorViews = () => {
   return <>
@@ -19,6 +20,7 @@ export const CreatorViews = () => {
         <Route path="/homepages" element={< HomePages/>} />
         <Route path="/services/:serviceId" element={<ServiceDetails />} /> 
         <Route path="/creators/:creatorId" element={<CreatorDetails />} />
+        <Route path="/metiercreators" element={<CreatorContainer />} />
 
 
       </Routes>
