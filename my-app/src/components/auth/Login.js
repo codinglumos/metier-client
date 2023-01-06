@@ -45,7 +45,7 @@ export const Login = () => {
 
                     <fieldset>
                         <label htmlFor="inputUsername" className="label--login"> Username </label>
-                        <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
+                        <input ref={username} type="username" id="username" className="form-control" placeholder="Username" required autoFocus />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPassword" className="label--login"> Password </label>
